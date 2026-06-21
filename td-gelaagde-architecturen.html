@@ -1,0 +1,1610 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/nl-java-spring-dec-2015/td-gelaagde-architecturen.html">
+      
+      
+        <link rel="prev" href="td-klassen.html">
+      
+      
+        <link rel="next" href="cours-inleiding-tot-het-spring-framework.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>4. [TD]: Gelaagde architecturen - Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-td-gelaagde-architecturen" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy" class="md-header__button md-logo" aria-label="Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. [TD]: Gelaagde architecturen
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar donkere modus"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar donkere modus" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar lichte modus"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar lichte modus" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/nl-java-spring-dec-2015" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy" class="md-nav__button md-logo" aria-label="Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/nl-java-spring-dec-2015" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WelKom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inleiding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Inleiding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-het-probleem.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. [TD]: Het probleem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-klassen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. [TD]: Klassen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. [TD]: Gelaagde architecturen
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="td-gelaagde-architecturen.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. [TD]: Gelaagde architecturen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-de-interfaces-van-de-applicatie-elections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. De interfaces van de applicatie [Elections]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-de-uitzonderingsklasse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. De uitzonderingsklasse
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-inleiding-tot-het-spring-framework.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. [Cours]: Inleiding tot het Spring-framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-inleiding-tot-api-jdbc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. [Cours]: Inleiding tot API JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-implementatie-van-de-laag-dao-van-td-met-api-jdbc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. [TD]: Implementatie van de laag [DAO] van TD met API JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-de-laag-metier.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. [TD]: De laag [metier]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-implementatie-van-de-laag-ui-met-een-consoleprogramma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. [TD]: Implementatie van de laag [ui] met een consoleprogramma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-implementatie-van-de-laag-ui-met-een-swing-interface--.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. [TD]: Implementatie van de laag [ui] met een Swing-interface- 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-beheer-van-relationele-databases-met-spring-data.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. [Cours]: Beheer van relationele databases met Spring Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-implementatie-van-de-laag-dao-van-td-met-spring-data.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. [TD]: Implementatie van de laag [DAO] van TD met [Spring Data]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-een-database-op-het-web-beschikbaar-maken-met-spring-mvc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. [Cours]: Een database op het web beschikbaar maken met Spring MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-web-expositie-van-de-laag-metier.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. [TD]: Web-expositie van de laag [metier]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-aanmaken-van-een-client-voor-de-webservice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. [TD]: aanmaken van een client voor de webservice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-de-toegang-tot-een-webservice-beveiligen-met-spring-security.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. [Cours]: De toegang tot een webservice beveiligen met Spring Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-beveiliging-van-de-webserver--json-van-de-verkiezingen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. [TD]: beveiliging van de webserver / jSON van de verkiezingen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-beheer-van-domeinoverstijgende-toegang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. [Cours]: Beheer van domeinoverstijgende toegang
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-verkiezingen-met-verzoeken-tussen-domeinen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. [TD] Verkiezingen met verzoeken tussen domeinen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="asynchrone-programmering-met-rxjava.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Asynchrone programmering met RxJava
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusie.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Conclusie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bijlagen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Bijlagen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span id="refheading317751812363491" name="refheading317751812363491" class="odt-bookmark-anchor"></span></p>
+<h1 id="4-td-gelaagde-architecturen">4. <span style="color: #365f91">[TD]: Gelaagde architecturen</span></h1>
+<p><strong>Trefwoorden</strong>: meerlaagse architectuur, Spring, afhankelijkheidsinjectie.</p>
+<p><span id="refheading317771812363491" name="refheading317771812363491" class="odt-bookmark-anchor"></span></p>
+<h2 id="41-introduction">4.1. <span style="color: #4f81bd">Introduction</span></h2>
+<p>Laten we even terugblikken op wat er is gedaan:</p>
+<ul>
+  <li>in deel 1 van de oefening ELECTIONS is er geen enkele klasse gebruikt. We hebben een oplossing gebouwd zoals we die in de programmeertaal C zouden hebben gebouwd.
+  </li>
+  <li>In deel 2 van de oefening zijn twee klassen geïntroduceerd:
+    <ul>
+      <li>[ListeElectorale], die de attributen (id, naam, stemmen, zetels, uitgeschakeld) van een kandidatenlijst vertegenwoordigt
+      </li>
+      <li>[ElectionsException], een klasse voor ongecontroleerde uitzonderingen. Dit type uitzondering wordt gebruikt telkens wanneer er een fatale fout optreedt in de verkiezingsapplicatie. Het is een ongecontroleerde uitzondering, c.a.d, die de ontwikkelaar niet hoeft af te vangen met een try-catch.
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>De berekening van de verkiezingsuitslag werd tot nu toe toevertrouwd aan een methode [main] van een klasse [MainElections]</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">istia.st.elections</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.*</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MainElections</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">   </span><span class="c1">// enkele gegevens</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">barre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.05</span><span class="p">;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">  </span><span class="c1">// ----------------------------------------------------------------------</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">   </span><span class="c1">// de hoofdprocedure</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">arguments</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">     </span><span class="c1">// de invoer via het toetsenbord wordt voorbereid</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">    </span><span class="n">BufferedReader</span><span class="w"> </span><span class="n">clavier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedReader</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">InputStreamReader</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">));</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">     </span><span class="c1">// invoer van de gegevens die nodig zijn voor de berekening van de zetels</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="p">...</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">     </span><span class="c1">// berekening van het aantal zetels dat de verschillende lijsten hebben behaald</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="p">....</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">     </span><span class="c1">// weergave van de resultaten</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="p">...</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// main</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="p">}</span><span class="w"> </span><span class="c1">// klasse</span>
+</code></pre></div></td></tr></table></div>
+<p>De vorige oplossing omvat drie klassieke fasen:</p>
+<ul>
+  <li>het verzamelen van de gegevens, regels 17-18
+  </li>
+  <li>de berekening van de uitkomst, regels 19-20
+  </li>
+  <li>de weergave en/of opslag van de resultaten, regels 21-22
+  </li>
+</ul>
+
+<p>Alleen fase 2 is echt constant. Fase 1 kan variëren: de gegevens kunnen afkomstig zijn van het toetsenbord, zoals in de bestudeerde voorbeelden, uit een tekstbestand, via een grafische interface, uit een database, via het netwerk, ... Ook zijn er talrijke manieren om de resultaten in fase 3 weer te geven: ze op het scherm weergeven zoals in de bestudeerde voorbeelden, ze opslaan in een bestand of in een database, ze via het netwerk verzenden, ...</p>
+<p>Meer in het algemeen kan een applicatie vaak worden gemodelleerd in drie lagen, die elk een duidelijk omschreven rol hebben:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006E80000018177EC9E34.png" width="619" height="135" style="display:inline-block; margin:4px;width:16.371cm;height:3.56cm;" class="odt-zoomable" data-zoom-src="images/10000000000006E80000018177EC9E34.png" /></td></tr></table>
+
+<p>Deze architectuur wordt ook wel „<strong>drielagenarchitectuur</strong>“ genoemd, een vertaling van het Engelse „three-tier architecture“. De term „drie lagen“ verwijst normaal gesproken naar een architectuur waarbij elke laag zich op een andere machine bevindt. Wanneer de lagen zich op dezelfde machine bevinden, wordt de architectuur een „drielagenarchitectuur“.</p>
+<ul>
+  <li>De laag [metier] bevat de bedrijfsregels van de applicatie. Voor onze verkiezingsapplicatie zijn dit de regels waarmee de zetels van de verschillende lijsten kunnen worden berekend, zodra bekend is hoeveel stemmen elke lijst heeft behaald. Deze laag heeft gegevens nodig om te kunnen functioneren. Bijvoorbeeld in de verkiezingsapplicatie:
+  </li>
+  <li>de lijsten, elk met hun naam en het aantal stemmen
+  </li>
+  <li>het aantal te vervullen zetels
+  </li>
+  <li>de kiesdrempel waaronder een lijst wordt uitgesloten
+  </li>
+</ul>
+
+<p>In het bovenstaande schema kunnen de gegevens uit twee bronnen afkomstig zijn:</p>
+<ul>
+  <li>de gegevenslaag of [dao] (DAO = Data Access Object) voor gegevens die al in bestanden of databases zijn opgeslagen. Dit zou hier het geval kunnen zijn voor de namen van de lijsten, het aantal te vervullen zetels en de kiesdrempel. Deze informatie is immers al bekend vóór de verkiezing zelf.
+  </li>
+  <li>de gebruikersinterface-laag of [ui] (UI = User Interface) voor gegevens die door de gebruiker worden ingevoerd of aan de gebruiker worden getoond. Dit zou hier het geval kunnen zijn voor de stemmen van de lijsten, die pas op het laatste moment bekend zijn, evenals voor de weergave van de verkiezingsuitslag.
+  </li>
+</ul>
+
+<ul>
+  <li>In het algemeen zorgt de laag [dao] voor de toegang tot persistente gegevens (bestanden, databases) of niet-persistente gegevens (netwerk, sensoren, ...).
+  </li>
+  <li>De laag [ui] zorgt op haar beurt voor de interacties met de gebruiker, indien er een is.
+  </li>
+  <li>De drie lagen zijn onafhankelijk van elkaar gemaakt door het gebruik van Java-interfaces.
+  </li>
+  <li>Er bestaan verschillende methoden om deze lagen samen in de applicatie te integreren. We zullen gebruikmaken van een tool genaamd „Spring“. In het schema loopt deze dwars door de andere lagen heen.
+  </li>
+</ul>
+
+<p>We gaan de eerder ontwikkelde applicatie [Elections] hergebruiken om deze een drielaagse architectuur te geven. Hiervoor gaan we de lagen van [ui, metier, dao] een voor een bestuderen, te beginnen met de laag [dao], de laag die zich bezighoudt met de persistente gegevens.</p>
+<p>Maar eerst moeten we de interfaces van de verschillende lagen van de applicatie [Elections] definiëren.</p>
+<p><span id="refheading317791812363491" name="refheading317791812363491" class="odt-bookmark-anchor"></span></p>
+<h2 id="42-de-interfaces-van-de-applicatie-elections">4.2. <span style="color: #4f81bd">De interfaces van de applicatie [Elections]</span></h2>
+<p>Ter herinnering: een interface definieert een reeks methodesignaturen. De klassen die de interface implementeren, vullen deze methoden met inhoud.</p>
+<p>Laten we terugkeren naar de drielaagse architectuur van onze applicatie:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006E80000018177EC9E34.png" width="619" height="135" style="display:inline-block; margin:4px;width:16.371cm;height:3.56cm;" class="odt-zoomable" data-zoom-src="images/10000000000006E80000018177EC9E34.png" /></td></tr></table>
+
+<p>In dit type architectuur neemt de gebruiker vaak het initiatief. Hij doet een verzoek in [1] en ontvangt een antwoord in [8]. Dit noemen we de verzoek-antwoordcyclus. Laten we het voorbeeld nemen van de berekening van het aantal behaalde zetels op de avond van de verkiezingen. Hiervoor zijn verschillende stappen nodig:</p>
+<ol>
+  <li>de laag [ui] moet de gebruiker vragen hoeveel stemmen elke lijst heeft behaald. Hiervoor moet zij de gebruiker de namen van de deelnemende lijsten tonen. De gebruiker hoeft dan alleen maar het aantal stemmen naast elke lijst in te vullen en vervolgens de berekening van de zetels aan te vragen.
+  </li>
+  <li>De laag [ui] beschikt niet over de namen van de lijsten. Deze zijn opgeslagen in de gegevensbron rechts van het schema. De laag zal het pad [2, 3, 4, 5, 6, 7] gebruiken om ze op te halen. De bewerking [2] is het opvragen van de lijsten, de bewerking [7] het antwoord op dit verzoek. Zodra dit is gebeurd, kan de laag ze via [8] aan de gebruiker presenteren.
+  </li>
+  <li>De gebruiker geeft het aantal stemmen dat elke lijst heeft behaald door aan de laag [ui]. Dit is de hierboven genoemde bewerking [1]. Tijdens deze stap heeft de gebruiker alleen interactie met de laag [ui]. Deze laag controleert met name de geldigheid van de ingevoerde gegevens. Zodra dit is gebeurd, vraagt de gebruiker om de lijst met zetels die elke lijst heeft behaald.
+  </li>
+  <li>De laag [ui] vraagt de bedrijfslaag om de zetels te berekenen. Hiervoor stuurt zij de gegevens door die zij van de gebruiker heeft ontvangen. Dit is de bewerking [2].
+  </li>
+  <li>De laag [metier] heeft bepaalde informatie nodig om haar taak uit te voeren. Ze beschikt al over de lijsten uit bewerking (b). Daarnaast heeft ze het aantal te vervullen zetels en de waarde van de kiesdrempel nodig. Zij zal deze informatie opvragen bij de laag [dao] via het pad [3, 4, 5, 6]. [3] is het oorspronkelijke verzoek en [6] het antwoord op dit verzoek.
+  </li>
+  <li>Nu de laag [metier] over alle benodigde gegevens beschikt, berekent deze het aantal zetels dat elke lijst heeft behaald.
+  </li>
+  <li>De laag [metier] kan nu reageren op de aanvraag van de laag [ui] die in (d) is gedaan. Dit is het pad [7].
+  </li>
+  <li>De laag [ui] zal deze resultaten opmaken om ze in een geschikte vorm aan de gebruiker te presenteren en ze vervolgens weer te geven. Dit is het pad [8].
+  </li>
+  <li>Men kan zich voorstellen dat deze resultaten in een bestand of een database moeten worden opgeslagen. Dit kan automatisch gebeuren. In dat geval zal de laag [metier] na bewerking (f) de laag [dao] vragen om de resultaten op te slaan. Dit is het pad [3, 4, 5, 6]. Dit kan ook alleen op verzoek van de gebruiker gebeuren. In dat geval wordt het pad [1-8] gebruikt door de vraag-antwoordcyclus.
+  </li>
+</ol>
+
+<p>Uit deze beschrijving blijkt dat een laag gebruikmaakt van de bronnen van de laag rechts ervan, nooit van die links ervan. Laten we twee aangrenzende lagen bekijken:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004D5000000F627965266.png" width="433" height="86" style="display:inline-block; margin:4px;width:11.449cm;height:2.281cm;" class="odt-zoomable" data-zoom-src="images/10000000000004D5000000F627965266.png" /></td></tr></table>
+
+<p>De laag [A] doet verzoeken aan de laag [B]. In de eenvoudigste gevallen wordt een laag geïmplementeerd door één enkele klasse. Een applicatie evolueert in de loop van de tijd. Zo kan de laag [B] verschillende implementatieklassen hebben, zoals [B1, B2, ...]. Als de laag [B] de laag [dao] is, kan deze een eerste implementatie hebben, [B1], die gegevens uit een bestand ophaalt. Enkele jaren later kan men de gegevens in een database willen opslaan.  Dan wordt er een tweede implementatieklasse [B2] gebouwd. Als in de oorspronkelijke applicatie de laag [A] rechtstreeks met de klasse [B1] werkte, zijn we genoodzaakt de code van de laag [A] gedeeltelijk te herschrijven. Stel bijvoorbeeld dat we in de laag [A] iets als het volgende hebben geschreven:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>B1 b1=new B1(...);
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>..
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>b1.getData(...);
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>regel 1: er wordt een instantie van de klasse [B1] aangemaakt
+  </li>
+  <li>regel 3: er worden gegevens opgevraagd bij deze instantie
+  </li>
+</ul>
+
+<p>Als we aannemen dat de nieuwe implementatieklasse [B2] methoden gebruikt met dezelfde signatuur als die van de klasse [B1], dan moeten alle [B1] worden gewijzigd in [B2]. Dat is het zeer gunstige en vrij onwaarschijnlijke scenario als er geen aandacht is besteed aan deze methodesignaturen. In de praktijk komt het vaak voor dat de klassen [B1] en [B2] niet dezelfde methodesignaturen hebben, waardoor een groot deel van de laag [A] volledig herschreven moet worden.</p>
+<p>Dit kan worden verbeterd door een interface in te voegen tussen de lagen [A] en [B]. Dit betekent dat we in een interface de methodesignaturen vastleggen die door de laag [B] aan de laag [A] worden aangeboden. Het vorige schema ziet er dan als volgt uit:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004DF0000011E86BFD530.png" width="437" height="100" style="display:inline-block; margin:4px;width:11.55cm;height:2.649cm;" class="odt-zoomable" data-zoom-src="images/10000000000004DF0000011E86BFD530.png" /></td></tr></table>
+
+<p>De laag [A] richt zich nu niet meer rechtstreeks tot de laag [B], maar tot de interface [IB] daarvan. Zo verschijnt in de code van de laag [A] de implementatieklasse [Bi] van de laag [B] slechts één keer voor, namelijk bij de implementatie van de interface [IB]. Zodra dit is gebeurd, wordt in de code de interface [IB] gebruikt en niet de bijbehorende implementatieklasse. De vorige code wordt dan als volgt:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>IB ib=new B1(...);
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>..
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>ib.getData(...);
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>regel 1: er wordt een instantie [ib] aangemaakt die de interface [IB] implementeert, door de klasse [B1] te instantiëren
+  </li>
+  <li>regel 3: er worden gegevens opgevraagd bij de instantie [ib]
+  </li>
+</ul>
+
+<p>Als we nu de implementatie [B1] van de laag [B] vervangen door een implementatie [B2], en deze twee implementaties voldoen aan dezelfde interface [IB], dan hoeft alleen regel 1 van de laag [A] te worden gewijzigd en verder niets. Dit is een groot voordeel dat op zichzelf al het systematische gebruik van interfaces tussen twee lagen rechtvaardigt.</p>
+<p>We kunnen nog een stap verder gaan en de laag [A] volledig onafhankelijk maken van de laag [B]. In de bovenstaande code vormt regel 1 een probleem omdat deze een harde verwijzing bevat naar de klasse [B1]. Het zou ideaal zijn als de laag [A] zou kunnen beschikken over een implementatie van de interface [IB] zonder een klasse te hoeven noemen. Dit zou in overeenstemming zijn met ons bovenstaande schema. We zien hier dat de laag [A] zich richt tot de interface [IB] en het is niet duidelijk waarom deze de naam zou moeten kennen van de klasse die deze interface implementeert. Dit detail is niet nuttig voor de laag [A].</p>
+<p>Met het Spring-framework (http://www.springframework.org) kan dit resultaat worden bereikt. De voorgaande architectuur evolueert als volgt:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000050800000175AF8E87D4.png" width="386" height="112" style="display:inline-block; margin:4px;width:10.22cm;height:2.96cm;" class="odt-zoomable" data-zoom-src="images/100000000000050800000175AF8E87D4.png" /></td></tr></table>
+
+<p>De transversale laag [Spring] stelt een laag in staat om via de configuratie een verwijzing te verkrijgen naar de laag die zich rechts ervan bevindt, zonder dat de naam van de implementatieklasse van die laag bekend hoeft te zijn. Deze naam staat in de configuratiebestanden en niet in de Java-code. De Java-code van de laag [A] ziet er dan als volgt uit:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>IB ib; // geïnitialiseerd door Spring
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>..
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>ib.getData(...);
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>regel 1: een instantie [ib] die de interface [IB] van de laag [B] implementeert. Deze instantie wordt door Spring aangemaakt op basis van informatie uit een configuratiebestand. Spring zorgt voor het aanmaken van:
+    <ul>
+      <li>de instantie [b] die de laag [B] implementeert
+      </li>
+      <li>de instantie [a] die de laag [A] implementeert. Deze instantie wordt geïnitialiseerd. Het bovenstaande veld [ib] krijgt als waarde de referentie [b] van het object dat de laag [B] implementeert
+      </li>
+    </ul>
+  </li>
+  <li>regel 3: er worden gegevens opgevraagd bij de instantie [ib]
+  </li>
+</ul>
+
+<p>We zien nu dat de implementatieklasse [B1] van laag B nergens in de code van laag [A] voorkomt. Wanneer de implementatie [B1] wordt vervangen door een nieuwe implementatie [B2], verandert er niets in de code van de klasse [A]. We wijzigen simpelweg de Spring-configuratiebestanden om [B2] te instantiëren in plaats van [B1].</p>
+<p>De combinatie <strong>van Spring</strong> en <strong>Java-interfaces</strong> zorgt voor een doorslaggevende verbetering van het onderhoud van applicaties door de lagen ervan onderling waterdicht te maken. Dit is de oplossing die we zullen gebruiken voor de applicatie [Elections].</p>
+<p>Laten we terugkeren naar de drielaagse architectuur van onze applicatie:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006D90000017E26BC8CF3.png" width="526" height="115" style="display:inline-block; margin:4px;width:13.91cm;height:3.03cm;" class="odt-zoomable" data-zoom-src="images/10000000000006D90000017E26BC8CF3.png" /></td></tr></table>
+
+<p>In eenvoudige gevallen kunnen we uitgaan van de laag [metier] om de interfaces van de applicatie te ontdekken. Om te kunnen werken, heeft de applicatie gegevens nodig:</p>
+<ul>
+  <li>die al beschikbaar zijn in bestanden, databases of via het netwerk. Deze worden geleverd door de laag [dao].
+  </li>
+  <li>nog niet beschikbaar zijn. Deze worden dan geleverd door de laag [ui], die ze van de gebruiker van de applicatie ontvangt.
+  </li>
+</ul>
+
+<p>Welke interface moet de laag [dao] aanbieden aan de laag [metier]? Welke interacties zijn mogelijk tussen deze twee lagen? De laag [dao] moet de volgende gegevens aan de laag [metier] leveren:</p>
+<ul>
+  <li>het aantal te vervullen zetels
+  </li>
+  <li>de waarde van de kiesdrempel waaronder een lijst wordt uitgesloten
+  </li>
+  <li>de namen van de lijsten
+  </li>
+</ul>
+
+<p>Deze informatie is immers al vóór de verkiezing bekend en kan dus worden opgeslagen. In de richting [metier] -&gt; [dao] kan de laag [metier] de laag [dao] vragen om de verkiezingsuitslag vast te leggen, met name de zetels die door de verschillende lijsten zijn behaald.</p>
+<p>Met deze informatie zou men een eerste definitie van de interface van de laag [dao] kunnen opstellen:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">interface</span><span style="color:#000000"> </span><span id="ielectionsdao" name="ielectionsdao" class="odt-bookmark-anchor"></span><span style="color:#000000">IElectionsDao</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">double</span><span style="color:#000000"> getSeuilElectoral();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> getNbSiegesAPourvoir();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ListeElectorale[] getListesElectorales();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> setListesElectorales(ListeElectorale[] listesElectorales);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>regel 1: de interface heet [IElectionsDao]. Deze definieert vier methoden:
+    <ul>
+      <li>drie methoden om gegevens uit de gegevensbron te lezen: [getSeuilElectoral, getNbSiegesAPourvoir, getListesElectorales]. Met deze drie methoden kan de laag [metier] de gegevens ophalen die de huidige verkiezing kenmerken.
+      </li>
+      <li>één methode om gegevens naar de gegevensbron te schrijven: [setListesElectorales]. Met deze methode kan de laag [metier] vragen om de door haar berekende resultaten op te slaan.
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Laten we terugkeren naar de drielaagse architectuur van onze applicatie:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006D90000017E26BC8CF3.png" width="526" height="115" style="display:inline-block; margin:4px;width:13.91cm;height:3.03cm;" class="odt-zoomable" data-zoom-src="images/10000000000006D90000017E26BC8CF3.png" /></td></tr></table>
+
+<p>Welke interface moet de laag [metier] aanbieden aan de laag [ui]? Laten we de mogelijke interacties tussen deze twee lagen eens bekijken.</p>
+<ol>
+  <li>De laag [ui] zal als taak hebben om de gebruiker te vragen naar de stemmen voor de verschillende concurrerende lijsten. Hiervoor moet zij het aantal lijsten kennen. Zij kan deze informatie opvragen bij de laag [metier], die op haar beurt de tabel met de deelnemende lijsten kan opvragen bij de laag [dao]. Als de laag [metier] over deze tabel beschikt, kan deze net zo goed worden doorgestuurd naar de laag [ui]. Deze laag beschikt dan over de namen van de lijsten en kan haar berichten aan de gebruiker verfijnen door bijvoorbeeld te vragen: „Aantal stemmen voor lijst A“.
+  </li>
+  <li>Zodra de laag [ui] de stemmen van alle lijsten heeft ontvangen, zal deze de laag [metier] vragen om de zetels te berekenen. Deze laag kan deze berekening uitvoeren en het resultaat doorgeven aan de laag [ui].
+  </li>
+  <li>Laag [ui] kan deze resultaten vervolgens aan de gebruiker presenteren. De gebruiker kan ook vragen om deze resultaten op te slaan.
+  </li>
+  <li>De laag [ui] kan bovendien aanvullende informatie aan de gebruiker willen presenteren, zoals de kiesdrempel of het aantal te vervullen zetels.
+  </li>
+</ol>
+
+<p>Met deze informatie zou een eerste definitie van de interface van de laag [metier]<span id="interfacemetier" name="interfacemetier" class="odt-bookmark-anchor"></span> kunnen worden opgesteld: </p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">interface</span><span style="color:#000000"> IElectionsMetier {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ListeElectorale[] getListesElectorales();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> getNbSiegesAPourvoir();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">double</span><span style="color:#000000"> getSeuilElectoral();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> recordResultats(ListeElectorale[] </span><span style="color:#6a3e3e">listesElectorales</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ListeElectorale[] calculerSieges(ListeElectorale[] </span><span style="color:#6a3e3e">listesElectorales</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>regel 1: de interface heet [IElectionsMetier]. Deze definieert de volgende methoden:
+    <ul>
+      <li>regel 3: een methode [getListesElectorales] waarmee de laag [ui] de tabel met de concurrerende lijsten kan ophalen;
+      </li>
+      <li>regel 5: de methode [getNbSiegesAPourvoir] maakt het mogelijk het aantal te vervullen zetels op te vragen;
+      </li>
+      <li>regel 7: de methode [getSeuilElectoral] maakt het mogelijk de kiesdrempel op te vragen;
+      </li>
+      <li>regel 11: een methode [calculerSieges] (regel 36) waarmee de laag [ui] de berekening van de zetels kan aanvragen zodra het aantal stemmen van de verschillende lijsten bekend is. De parameter is de tabel met de deelnemende lijsten, zonder hun zetels en zonder de booleaanse waarde ‘uitgeschakeld’. Het geretourneerde resultaat is dezelfde tabel, maar nu met de velden [sièges, elimine] geïnitialiseerd;
+      </li>
+      <li>regel 9: een methode [recordResultats] waarmee de laag [ui] de registratie van de resultaten kan aanvragen.
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Opmerking</strong>: vanwege haar positie neemt de laag [métier] bepaalde methoden van de laag [DAO] over om deze aan de laag [UI] aan te bieden. Vanwege deze redundantie kan men in de verleiding komen om alles samen te voegen in één enkele laag die zowel de bedrijfslogica als de toegang tot de gegevens zou omvatten. Deze enkele laag wordt soms het <strong>model</strong> genoemd, de M in de afkorting <strong>MVC</strong> (Model - View - Controller). MVC is een veelgebruikt ontwerppatroon (design pattern) in webapplicaties.</p>
+<p>Laten we de signatuur van de methode [calculerSieges] eens bekijken:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ListeElectorale[] calculerSieges(ListeElectorale[] </span><span style="color:#6a3e3e">listesElectorales</span><span style="color:#000000">);</span></span></span>
+</code></pre></div>
+
+<p>Hierboven stond geschreven: „De parameter is de array van concurrerende lijsten, zonder hun zetels en zonder de uitgesloten booleaanse waarde. Het resultaat is dezelfde array, maar nu met de velden [sièges, elimine]”. De methodesignatuur zou ook als volgt kunnen zijn:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> void calculerSieges(ListeElectorale[] </span><span style="color:#6a3e3e">listesElectorales</span><span style="color:#000000">);</span></span></span>
+</code></pre></div>
+
+<p>De parameter [listesElectorales] is een objectverwijzing, in dit geval een array. Elk element is op zijn beurt een objectverwijzing, in dit geval van het type [ListeElectorale]. De methode [calculerSieges] wijzigt de velden [sieges, elimine] van elk van deze objecten. De aanroepende methode heeft een pointer [listesElectorales] die:</p>
+<ul>
+  <li>vóór de aanroep is dit de referentie van een objectarray [ListeElectorale] waarvan de velden [sieges, elimine] niet zijn geïnitialiseerd;
+  </li>
+  <li>na de aanroep is dit de (zelfde) verwijzing naar een objectarray [ListeElectorale] waarvan de velden [sieges, elimine] zijn geïnitialiseerd;
+  </li>
+</ul>
+
+<p>Waarom zou je dan de handtekening gebruiken:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ListeElectorale[] calculerSieges(ListeElectorale[] </span><span style="color:#6a3e3e">listesElectorales</span><span style="color:#000000">);</span></span></span>
+</code></pre></div>
+
+<p>Bij het schrijven van een interface is het goed om te onthouden dat deze in twee verschillende contexten kan worden gebruikt:<span id="interface-locale-distante" name="interface-locale-distante" class="odt-bookmark-anchor"></span> <em>local</em> en <em>distant</em>. In de context <em>local</em> worden de aanroepende methode en de aangeroepen methode uitgevoerd in dezelfde JVM (Java Virtual Machine):</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006D90000017E26BC8CF3.png" width="526" height="115" style="display:inline-block; margin:4px;width:13.91cm;height:3.03cm;" class="odt-zoomable" data-zoom-src="images/10000000000006D90000017E26BC8CF3.png" /></td></tr></table>
+
+<p>Als de laag [ui] de methode <em><span style="color: #000000">calculerSieges </span></em>van de laag [DAO] aanroept, heeft deze wel degelijk een verwijzing naar de parameter [<span style="color: #000000">ListeElectorale[] </span><span style="color: #6a3e3e">listesElectorales</span>] die zij doorgeeft aan de methode.</p>
+<p>In de context <em>distant</em> worden de aanroepende methode en de aangeroepen methode uitgevoerd in verschillende JVM’en:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000070000000191104E68B3.png" width="537" height="120" style="display:inline-block; margin:4px;width:14.22cm;height:3.18cm;" class="odt-zoomable" data-zoom-src="images/100000000000070000000191104E68B3.png" /></td></tr></table>
+
+<p>Hierboven wordt de laag [ui] uitgevoerd in JVM 1 en de laag [métier] in JVM 2 op twee verschillende machines. De twee lagen communiceren niet rechtstreeks met elkaar. Tussen beide ligt een laag die we de communicatielaag [1] zullen noemen. Deze bestaat uit een zendlaag [2] en een ontvangstlaag [3]. De ontwikkelaar hoeft deze communicatielagen doorgaans niet zelf te schrijven. Ze worden automatisch gegenereerd door softwaretools. De laag [metier] wordt geschreven alsof deze in dezelfde JVM wordt uitgevoerd als de laag [DAO]. Er is dus geen wijziging in de code nodig.</p>
+<p>Het communicatiemechanisme tussen de laag [ui] en de laag [métier] is als volgt:</p>
+<ul>
+  <li>de laag [ui] roept de methode <i><span style="color: #000000">calculerSieges </span></i>van de laag [métier] aan en geeft daarbij de parameter [<span style="color: #000000">ListeElectorale[] </span><i><span style="color: #6a3e3e">listesElectorales1</span></i>];
+  </li>
+  <li>deze parameter wordt in feite doorgegeven aan de verzendlaag [2]. Deze zal de <b>waarde </b>van de parameter <i><span style="color: #6a3e3e">listesElectorales1 </span></i>via het netwerk verzenden, en niet <b>de referentie</b> ervan. De exacte vorm van deze waarde hangt af van het gebruikte communicatieprotocol;
+  </li>
+  <li>de ontvangstlaag [3] haalt deze waarde op en reconstrueert op basis daarvan een object [<span style="color: #000000">ListeElectorale[] </span><span style="color: #6a3e3e">listesElectorales2</span>] dat een afspiegeling is van de oorspronkelijke parameter die door de laag [metier] is verzonden. We hebben nu twee identieke objecten (wat de inhoud betreft) in twee verschillende JVM-lagen: <i><span style="color: #6a3e3e">listesElectorales1 </span></i>en <i><span style="color: #6a3e3e">listesElectorales2</span></i>.
+  </li>
+  <li>De ontvangstlaag geeft het object <i><span style="color: #6a3e3e">listesElectorales2</span></i> door aan de methode <i>calculerSieges </i>van de laag [métier]; deze slaat het op in de database. Na deze bewerking verwijst de referentie <i><span style="color: #6a3e3e">listesElectorales2 </span></i>naar een array van objecten [ListeElectorale] waarvan de velden [sieges, elimine] zijn geïnitialiseerd. . Dit geldt niet voor het object <i><span style="color: #6a3e3e">listesElectorales1, </span></i>waarnaar de laag [ui] verwijst. Als we willen dat de laag [ui] een verwijzing naar het object <i><span style="color: #6a3e3e">listesElectorales2</span></i> heeft, moeten we dit object naar de laag sturen. Daarom moeten we de volgende handtekening gebruiken voor de methode [calculerSieges]:
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ListeElectorale[] calculerSieges(ListeElectorale[] </span><span style="color:#6a3e3e">listesElectorales</span><span style="color:#000000">);</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>Met deze handtekening zal de methode <i><span style="color: #000000">calculerSieges </span></i>de referentie <i><span style="color: #6a3e3e">listesElectorales2</span></i> als resultaat opleveren. Dit resultaat wordt teruggestuurd naar de ontvangstlaag [3], die de laag [métier] had aangeroepen. Deze laag geeft de <b>waarde </b>(en niet de <b>referentie</b>) van <i><span style="color: #6a3e3e">listesElectorales2 </span></i>terug aan de verzendlaag [2];
+  </li>
+  <li>de verzendlaag [2] haalt deze waarde op en reconstrueert op basis daarvan een object [<span style="color: #000000">ListeElectorale[] </span><i><span style="color: #6a3e3e">listesElectorales3</span></i>] afbeelding van het resultaat dat wordt weergegeven door de methode <i><span style="color: #000000">calculerSieges </span></i>van de laag [métier].
+  </li>
+  <li>Het object [<span style="color: #000000">ListeElectorale[] </span><i><span style="color: #6a3e3e">listesElectorales3</span></i>] wordt doorgegeven aan de methode van de laag [ui], waarvan de aanroep van de methode <i><span style="color: #000000">calculerSieges </span></i>van de laag [DAO] dit hele mechanisme in gang had gezet;
+  </li>
+</ul>
+
+<p>Tijdens dit proces worden objecten van het type [ListeElectorale] doorgegeven tussen de lagen [2] en [3]:</p>
+<ul>
+  <li>wanneer de laag [2] de waarde van een object van het type [ListeElectorale] doorgeeft aan de laag [3], wordt gezegd dat het object wordt <b>geserialiseerd</b>. De exacte vorm van deze serialisatie hangt af van het gebruikte communicatieprotocol;
+  </li>
+  <li>wanneer de laag [3] de waarde van een object [ListeElectorale] ophaalt om opnieuw een object [ListeElectorale] aan te maken, wordt gezegd dat het object <b>gedeserialiseerd</b> is;
+  </li>
+</ul>
+
+<p>Om een object deze serialisatie/deserialisatie te laten ondergaan, vereisen sommige protocollen dat het object de interface [Serializable] implementeert. Deze interface is slechts een markering. Er hoeven geen methoden te worden geïmplementeerd. Daarom wordt de klasse [ListeElectorale] voortaan als volgt gedeclareerd:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">abstract</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> ListeElectorale </span><span style="font-weight:bold;color:#7f0055">implements</span><span style="color:#000000"> Serializable {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">static</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">final</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">long</span><span style="color:#000000"> </span><span style="font-weight:bold;font-style:italic;color:#0000c0">serialVersionUID</span><span style="color:#000000"> = 1L;</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>Het veld op regel 2 is vastgelegd. Dit kan ongewijzigd blijven en worden gebruikt voor elke klasse van het type [Serializable].
+  </li>
+</ul>
+
+<p><span id="refheading1626141501930048" name="refheading1626141501930048" class="odt-bookmark-anchor"></span></p>
+<h2 id="43-de-uitzonderingsklasse">4.3. <span style="color: #4f81bd">De uitzonderingsklasse</span></h2>
+<p>Laten we teruggaan naar de interface van de laag [DAO]:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006E600000186C15E5B12.png" width="530" height="117" style="display:inline-block; margin:4px;width:14.019cm;height:3.099cm;" class="odt-zoomable" data-zoom-src="images/10000000000006E600000186C15E5B12.png" /></td></tr></table>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">interface</span><span style="color:#000000"> </span><span id="ielectionsdao1" name="ielectionsdao1" class="odt-bookmark-anchor"></span><span style="color:#000000">IElectionsDao</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">double</span><span style="color:#000000"> getSeuilElectoral();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> getNbSiegesAPourvoir();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ListeElectorale[] getListesElectorales();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> setListesElectorales(ListeElectorale[] listesElectorales);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>Deze methoden werken met een database en kunnen verschillende fouten tegenkomen, bijvoorbeeld een niet-beschikbare SGBD. Bij het schrijven van een methode moet altijd rekening worden gehouden met foutgevallen. Deze worden doorgaans gemeld door middel van een uitzondering. We zijn de klasse [ElectionsException] al tegengekomen in paragraaf<a href="td-klassen.html#refheading317691812363491"><u><span style="color: #0563c1"> 3.3</span></u></a>. We zullen deze blijven gebruiken, maar hem als volgt uitbreiden:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> ...;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> java.io.Serializable;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> java.util.ArrayList;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> java.util.List;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// uitzonderingsklasse voor de applicatie Verkiezingen</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// de uitzondering is ongecontroleerd</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> ElectionsException </span><span style="font-weight:bold;color:#7f0055">extends</span><span style="color:#000000"> RuntimeException </span><span style="font-weight:bold;color:#7f0055">implements</span><span style="color:#000000"> Serializable {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// serial ID</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">static</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">final</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">long</span><span style="color:#000000"> </span><span style="font-weight:bold;font-style:italic;color:#0000c0">serialVersionUID</span><span style="color:#000000"> = 1L;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// lokale velden</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> </span><span style="color:#0000c0">code</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> List&lt;String&gt; </span><span style="color:#0000c0">erreurs</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// constructors</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ElectionsException() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">super</span><span style="color:#000000">();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ElectionsException(</span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> </span><span style="color:#6a3e3e">code</span><span style="color:#000000">, Throwable </span><span style="color:#6a3e3e">e</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// bovenliggend</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">super</span><span style="color:#000000">(</span><span style="color:#6a3e3e">e</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// lokaal</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">this</span><span style="color:#000000">.</span><span style="color:#0000c0">code</span><span style="color:#000000"> = </span><span style="color:#6a3e3e">code</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">this</span><span style="color:#000000">.</span><span style="color:#0000c0">erreurs</span><span style="color:#000000"> = getErreursForException(</span><span style="color:#6a3e3e">e</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ElectionsException(</span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> </span><span style="color:#6a3e3e">code</span><span style="color:#000000">, String </span><span style="color:#6a3e3e">message</span><span style="color:#000000">, Throwable </span><span style="color:#6a3e3e">e</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// bovenliggend</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">super</span><span style="color:#000000">(</span><span style="color:#6a3e3e">message</span><span style="color:#000000">,</span><span style="color:#6a3e3e">e</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// lokaal</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">this</span><span style="color:#000000">.</span><span style="color:#0000c0">code</span><span style="color:#000000"> = </span><span style="color:#6a3e3e">code</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">this</span><span style="color:#000000">.</span><span style="color:#0000c0">erreurs</span><span style="color:#000000"> = getErreursForException(</span><span style="color:#6a3e3e">e</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ElectionsException(</span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> </span><span style="color:#6a3e3e">code</span><span style="color:#000000">, String </span><span style="color:#6a3e3e">message</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// bovenliggend</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">super</span><span style="color:#000000">(</span><span style="color:#6a3e3e">message</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// lokaal</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">this</span><span style="color:#000000">.</span><span style="color:#0000c0">code</span><span style="color:#000000"> = </span><span style="color:#6a3e3e">code</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        List&lt;String&gt; </span><span style="color:#6a3e3e">erreurs</span><span style="color:#000000"> = </span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> ArrayList&lt;&gt;();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#6a3e3e">erreurs</span><span style="color:#000000">.add(</span><span style="color:#6a3e3e">message</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">this</span><span style="color:#000000">.</span><span style="color:#0000c0">erreurs</span><span style="color:#000000"> = </span><span style="color:#6a3e3e">erreurs</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ElectionsException(</span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> </span><span style="color:#6a3e3e">code</span><span style="color:#000000">, List&lt;String&gt; </span><span style="color:#6a3e3e">erreurs</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// bovenliggend</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">super</span><span style="color:#000000">();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// lokaal</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">this</span><span style="color:#000000">.</span><span style="color:#0000c0">code</span><span style="color:#000000"> = </span><span style="color:#6a3e3e">code</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">this</span><span style="color:#000000">.</span><span style="color:#0000c0">erreurs</span><span style="color:#000000"> = </span><span style="color:#6a3e3e">erreurs</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// lijst met foutmeldingen van een uitzondering</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> List&lt;String&gt; getErreursForException(Throwable </span><span style="color:#6a3e3e">th</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// de lijst met foutmeldingen van de uitzondering wordt opgehaald</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        Throwable </span><span style="color:#6a3e3e">cause</span><span style="color:#000000"> = </span><span style="color:#6a3e3e">th</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        List&lt;String&gt; </span><span style="color:#6a3e3e">erreurs</span><span style="color:#000000"> = </span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> ArrayList&lt;&gt;();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">while</span><span style="color:#000000"> (</span><span style="color:#6a3e3e">cause</span><span style="color:#000000"> != </span><span style="font-weight:bold;color:#7f0055">null</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000">// de melding wordt alleen opgehaald als deze !=null is en niet leeg</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            String </span><span style="color:#6a3e3e">message</span><span style="color:#000000"> = </span><span style="color:#6a3e3e">cause</span><span style="color:#000000">.getMessage();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="font-weight:bold;color:#7f0055">if</span><span style="color:#000000"> (</span><span style="color:#6a3e3e">message</span><span style="color:#000000"> != </span><span style="font-weight:bold;color:#7f0055">null</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#6a3e3e">message</span><span style="color:#000000"> = </span><span style="color:#6a3e3e">message</span><span style="color:#000000">.trim();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="font-weight:bold;color:#7f0055">if</span><span style="color:#000000"> (</span><span style="color:#6a3e3e">message</span><span style="color:#000000">.length() != 0) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                    </span><span style="color:#6a3e3e">erreurs</span><span style="color:#000000">.add(</span><span style="color:#6a3e3e">message</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000">// volgende oorzaak</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#6a3e3e">cause</span><span style="color:#000000"> = </span><span style="color:#6a3e3e">cause</span><span style="color:#000000">.getCause();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">return</span><span style="color:#000000"> </span><span style="color:#6a3e3e">erreurs</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// getters en setters</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>regels 16-17: het type [ElectionsException] bevat:
+    <ul>
+      <li>een foutcode, regel 16;
+      </li>
+      <li>een lijst met foutmeldingen, regel 17;
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>De klasse ondersteunt vijf constructors:</p>
+<ul>
+  <li><span style="color: #000000">regel 20: </span><b><span style="color: #000000">ElectionsException</span></b><span style="color: #000000">()</span>
+  </li>
+  <li><span style="color: #000000">regel 24: </span><b><span style="color: #000000">ElectionsException</span></b><span style="color: #000000">(</span><b><span style="color: #7f0055">int </span></b><span style="color: #6a3e3e">code</span><span style="color: #000000">, Throwable </span><span style="color: #6a3e3e">e</span><span style="color: #000000">): de tweede parameter is van het type [Throwable], de bovenliggende klasse van de klasse [Exception]. Met deze constructor kan de uitzondering </span><b><span style="color: #000000">e</span></b><span style="color: #000000"> worden ingekapseld met een foutcode. Het type [Throwable] (en dus het type Exception) maakt het mogelijk om een of meerdere uitzonderingen in te kapselen. Het idee is:</span>
+    <ul>
+      <li><span style="color: #000000">een uitzondering die zich voordoet op te vangen (catch);</span>
+      </li>
+      <li><span style="color: #000000">deze te voorzien van een melding door hem in een nieuwe uitzondering in te kapselen;</span>
+      </li>
+      <li><span style="color: #000000">de nieuwe uitzondering opnieuw te genereren;</span>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>try{
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>...
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>}catch (Exception1 e1){
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>   throw new Exception2(«un message»,e1);
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>}
+</code></pre></div>
+<p><span style="color: #000000">De inkapseling vindt plaats op regel 34 via de instructie [super(message,e)]. Dit inkapselingsproces kan worden herhaald en de oorspronkelijke uitzondering kan worden aangevuld met verschillende berichten. Men spreekt dan van een stapel uitzonderingen. Met de methode [private List&lt;String&gt; getErreursForException(Throwable th)] kunnen de verschillende berichten worden opgehaald die bij de ingekapselde uitzonderingen horen:</span></p>
+<ul>
+  <li><span style="color: #000000">(vervolg)</span>
+    <ul>
+      <li><span style="color: #000000">(vervolg)</span>
+        <ul>
+          <li><span style="color: #000000">de ingekapselde uitzondering wordt opgehaald met de methode Throwable [Throwable].getCause();</span>
+          </li>
+          <li><span style="color: #000000">het bericht dat bij een uitzondering hoort, wordt verkregen via de String-methode [Throwable].getMessage();</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span style="color: #000000">regels 28-29: de velden [code, erreurs] worden geconstrueerd;</span>
+  </li>
+  <li><span style="color: #000000">regel 32: </span><b><span style="color: #7f0055">public </span></b><span style="color: #000000">ElectionsException(</span><b><span style="color: #7f0055">int </span></b><span style="color: #6a3e3e">code</span><span style="color: #000000">, String </span><span style="color: #6a3e3e">message</span><span style="color: #000000">, Throwable </span><span style="color: #6a3e3e">e</span><span style="color: #000000">): deze constructor is vergelijkbaar met de vorige, behalve dat hij de uitzondering die hij gaat inkapselen aanvult met een code en een bericht;</span>
+  </li>
+  <li><span style="color: #000000">regel 40: </span><b><span style="color: #7f0055">public </span></b><span style="color: #000000">ElectionsException(</span><b><span style="color: #7f0055">int </span></b><span style="color: #6a3e3e">code</span><span style="color: #000000">, String </span><span style="color: #6a3e3e">message</span><span style="color: #000000">): constructor zonder uitzondering;</span>
+  </li>
+  <li><span style="color: #000000">regel 50: </span><b><span style="color: #7f0055">public </span></b><span style="color: #000000">ElectionsException(</span><b><span style="color: #7f0055">int </span></b><span style="color: #6a3e3e">code</span><span style="color: #000000">, List&lt;String&gt; </span><span style="color: #6a3e3e">fouten</span><span style="color: #000000">): constructor zonder uitzondering of bericht;</span>
+  </li>
+</ul>
+
+<p><span style="color: #000000">De klasse [ElectionsException] kan als volgt worden gebruikt:</span></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>try{
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>...
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>}catch (Exception1 e1){
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>   throw new ElectionsException(un_code,un_message,e1);
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>}
+</code></pre></div>
+<p><span style="color: #000000">waarbij het bericht al dan niet aanwezig zal zijn. Eenmaal aangemaakt, is de uitzondering [ElectionsException] niet bedoeld om nieuwe uitzonderingen te omvatten. Hierboven omvat deze de uitzondering </span><em><span style="color: #000000">e1 </span></em><span style="color: #000000">en de uitzonderingen die </span><em><span style="color: #000000">e1 </span></em><span style="color: #000000">omvat. Er volgen vervolgens geen nieuwe omhullingen meer.</span></p>
+<p><span style="color: #000000">De klasse [ElectionsException] kan ook op de volgende manier worden gebruikt:</span></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>//<span class="w"> </span>code<span class="w"> </span>waarbij<span class="w"> </span>een<span class="w"> </span>fout<span class="w"> </span>kan<span class="w"> </span>optreden<span class="w"> </span><span class="o">(</span>maar<span class="w"> </span>niet<span class="w"> </span><span class="k">in</span><span class="w"> </span>de<span class="w"> </span>vorm<span class="w"> </span>van<span class="w"> </span>een<span class="w"> </span>uitzondering<span class="o">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>...
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">if</span><span class="o">(</span>erreur<span class="o">){</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span>throw<span class="w"> </span>new<span class="w"> </span>ElectionsException<span class="o">(</span>un_code,un_message<span class="o">)</span><span class="p">;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="o">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Deze cursus-tutorial, geschreven door <strong>Serge Tahé</strong>, wordt aan het publiek ter beschikking gesteld volgens de voorwaarden van de
+        <em>Creative Commons Naamsvermelding – Geen commercieel gebruik –
+        Gelijk delen 3.0 ongewijzigd</em>.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

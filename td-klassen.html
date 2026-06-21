@@ -1,0 +1,1971 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/nl-java-spring-dec-2015/td-klassen.html">
+      
+      
+        <link rel="prev" href="td-het-probleem.html">
+      
+      
+        <link rel="next" href="td-gelaagde-architecturen.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>3. [TD]: Klassen - Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-td-klassen" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy" class="md-header__button md-logo" aria-label="Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. [TD]: Klassen
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar donkere modus"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar donkere modus" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar lichte modus"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar lichte modus" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/nl-java-spring-dec-2015" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy" class="md-nav__button md-logo" aria-label="Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Inleiding tot de programmeertaal Java en het Spring-ecosysteem aan de hand van een casestudy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/nl-java-spring-dec-2015" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WelKom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inleiding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Inleiding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-het-probleem.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. [TD]: Het probleem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. [TD]: Klassen
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="td-klassen.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. [TD]: Klassen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Support
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-de-klas-listeelectorale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. De klas [ListeElectorale]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-aanmaken-van-een-uitzonderingsklasse-electionsexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Aanmaken van een uitzonderingsklasse [ElectionsException]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-een-unit-testklasse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Een unit-testklasse
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-mainelections-versie-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. MainElections: versie 2
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-gelaagde-architecturen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. [TD]: Gelaagde architecturen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-inleiding-tot-het-spring-framework.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. [Cours]: Inleiding tot het Spring-framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-inleiding-tot-api-jdbc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. [Cours]: Inleiding tot API JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-implementatie-van-de-laag-dao-van-td-met-api-jdbc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. [TD]: Implementatie van de laag [DAO] van TD met API JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-de-laag-metier.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. [TD]: De laag [metier]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-implementatie-van-de-laag-ui-met-een-consoleprogramma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. [TD]: Implementatie van de laag [ui] met een consoleprogramma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-implementatie-van-de-laag-ui-met-een-swing-interface--.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. [TD]: Implementatie van de laag [ui] met een Swing-interface- 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-beheer-van-relationele-databases-met-spring-data.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. [Cours]: Beheer van relationele databases met Spring Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-implementatie-van-de-laag-dao-van-td-met-spring-data.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. [TD]: Implementatie van de laag [DAO] van TD met [Spring Data]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-een-database-op-het-web-beschikbaar-maken-met-spring-mvc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. [Cours]: Een database op het web beschikbaar maken met Spring MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-web-expositie-van-de-laag-metier.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. [TD]: Web-expositie van de laag [metier]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-aanmaken-van-een-client-voor-de-webservice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. [TD]: aanmaken van een client voor de webservice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-de-toegang-tot-een-webservice-beveiligen-met-spring-security.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. [Cours]: De toegang tot een webservice beveiligen met Spring Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-beveiliging-van-de-webserver--json-van-de-verkiezingen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. [TD]: beveiliging van de webserver / jSON van de verkiezingen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cours-beheer-van-domeinoverstijgende-toegang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. [Cours]: Beheer van domeinoverstijgende toegang
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="td-verkiezingen-met-verzoeken-tussen-domeinen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. [TD] Verkiezingen met verzoeken tussen domeinen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="asynchrone-programmering-met-rxjava.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Asynchrone programmering met RxJava
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusie.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Conclusie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bijlagen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Bijlagen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span id="refheading317651812363491" name="refheading317651812363491" class="odt-bookmark-anchor"></span></p>
+<h1 id="3-td-klassen">3. <span style="color: #365f91">[TD]: Klassen</span></h1>
+<p><strong>Sleutelwoorden</strong>: klasse, interface, overerving, uitzondering, polymorfisme</p>
+<p><strong>Aanbevolen lectuur</strong>:</p>
+<ul>
+  <li>paragrafen 2.1, 2.2, 2.4 en 2.7 van hoofdstuk 2 van [ref1]: Klassen en interfaces
+  </li>
+  <li>paragrafen 3.3 (klasse String), 3.5 (klasse ArrayList), 3.6 (klasse Arrays)
+  </li>
+</ul>
+
+<p>In deel 1 van de oefening ELECTIONS is geen enkele klasse gebruikt. We hebben een oplossing gebouwd zoals we die in de programmeertaal C zouden hebben gebouwd. We introduceren nu het begrip <strong>Java-klasse</strong>.</p>
+<p><span id="refheading17454269506693" name="refheading17454269506693" class="odt-bookmark-anchor"></span></p>
+<h2 id="31-support">3.1. <span style="color: #4f81bd">Support</span></h2>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000AE0000007E2A79D0D2.png" width="122" height="88" style="display:inline-block; margin:4px;width:3.221cm;height:2.33cm;" class="odt-zoomable" data-zoom-src="images/10000000000000AE0000007E2A79D0D2.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000ED000000894DDDE97D.png" width="166" height="96" style="display:inline-block; margin:4px;width:4.39cm;height:2.54cm;" class="odt-zoomable" data-zoom-src="images/10000000000000ED000000894DDDE97D.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
+
+<p>De map [support / chap-03] bevat het Eclipse-project van dit hoofdstuk.</p>
+<p>We gaan voortaan werken met JDK 1.8, omdat sommige van de volgende projecten deze versie vereisen. Om te weten welke versie wordt gebruikt, gaat u als volgt te werk:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004150000023CE56E0D75.png" width="523" height="286" style="display:inline-block; margin:4px;width:13.825cm;height:7.567cm;" class="odt-zoomable" data-zoom-src="images/10000000000004150000023CE56E0D75.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004B1000001207FC6F553.png" width="601" height="144" style="display:inline-block; margin:4px;width:15.889cm;height:3.81cm;" class="odt-zoomable" data-zoom-src="images/10000000000004B1000001207FC6F553.png" /></td></tr></table>
+
+<ul>
+  <li>in [4], de gebruikte JRE (Java Runtime Environment). Deze JRE is hier in feite een JDK (Java Development Kit), hier [jdk1.8.0_60]. Als het geen JDK is of als u een versie lager dan 1.8 hebt, ga dan als volgt te werk: [5-21];
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000059F000002D0E9975998.png" width="680" height="340" style="display:inline-block; margin:4px;width:17.999cm;height:9.005cm;" class="odt-zoomable" data-zoom-src="images/100000000000059F000002D0E9975998.png" /></td></tr></table>
+
+<ul>
+  <li>naar [8], de JRE die momenteel standaard door Eclipse wordt gebruikt;
+  </li>
+  <li>in [11], de verschillende JDK en JRE die momenteel bij Eclipse bekend zijn;
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000572000002B85410D524.png" width="680" height="340" style="display:inline-block; margin:4px;width:17.999cm;height:8.985cm;" class="odt-zoomable" data-zoom-src="images/1000000000000572000002B85410D524.png" /></td></tr></table>
+
+<ul>
+  <li>in [15], <b>kies dan een JDK in plaats van een JRE</b>. Dit document maakt gebruik van Maven-projecten die een JDK nodig hebben;
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005B9000002EA31E098E1.png" width="680" height="346" style="display:inline-block; margin:4px;width:17.999cm;height:9.163cm;" class="odt-zoomable" data-zoom-src="images/10000000000005B9000002EA31E098E1.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000572000001BD639EFE35.png" width="680" height="217" style="display:inline-block; margin:4px;width:17.999cm;height:5.745cm;" class="odt-zoomable" data-zoom-src="images/1000000000000572000001BD639EFE35.png" /></td></tr></table>
+
+<ul>
+  <li>in [21] hebben we een JDK met versie &gt;=1.8;
+  </li>
+  <li>in [22-23], ga je naar de facetten (verschillende weergaven van hetzelfde Eclipse-project) van het project;
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000002B000000208E7A6D7F1.png" width="344" height="260" style="display:inline-block; margin:4px;width:9.102cm;height:6.879cm;" class="odt-zoomable" data-zoom-src="images/10000000000002B000000208E7A6D7F1.png" /></td></tr></table>
+
+<ul>
+  <li>in [24], controleer of u een Java-versie &gt;=1.8 gebruikt;
+  </li>
+</ul>
+
+<p><span id="refheading317671812363491" name="refheading317671812363491" class="odt-bookmark-anchor"></span>
+<span id="listeelectorale" name="listeelectorale" class="odt-bookmark-anchor"></span></p>
+<h2 id="32-de-klas-listeelectorale">3.2. <span style="color: #4f81bd">De klas [ListeElectorale]</span></h2>
+<p>In de programmeertaal C zouden we waarschijnlijk een <strong>structuur</strong> hebben gebruikt om een lijst met verkiezingsdeelnemers weer te geven. Die zou er als volgt uit kunnen zien:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>struct t_liste
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   {
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>     char nom[15];
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>     long voix;
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>     int  elimine;
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>     int sieges;
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>   };
+</code></pre></div>
+<p>Het begrip &#x27;structuur&#x27; bestaat niet in de programmeertaal Java. Het moet worden vervangen door het begrip <strong>&#x27;klasse</strong>&#x27;. We besluiten daarom een klasse aan te maken om de informatie over een kandidatenlijst op te slaan. Deze zou de volgende opbouw hebben:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> istia.st.elections;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> ListeElectorale {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="color:#3f5fbf">identité</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> </span><span style="color:#0000c0">id</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nom</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> String </span><span style="color:#0000c0">nom</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nombre</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">voix</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> </span><span style="color:#0000c0">voix</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nombre</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">sièges</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> </span><span style="color:#0000c0">sieges</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="color:#3f5fbf">indique</span><span style="color:#000000"> </span><span style="color:#3f5fbf">si</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span><span style="color:#000000"> </span><span style="color:#3f5fbf">est</span><span style="color:#000000"> </span><span style="color:#3f5fbf">éliminée</span><span style="color:#000000"> </span><span style="color:#3f5fbf">ou</span><span style="color:#000000"> </span><span style="color:#3f5fbf">non</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">boolean</span><span style="color:#000000"> </span><span style="color:#0000c0">elimine</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="color:#3f5fbf">constructeur</span><span style="color:#000000"> </span><span style="color:#3f5fbf">par</span><span style="color:#000000"> </span><span style="color:#3f5fbf">défaut</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ListeElectorale() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@param</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nom</span><span style="color:#000000"> </span><span style="color:#3f5fbf">String</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">le</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nom</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@param</span><span style="color:#000000"> </span><span style="color:#3f5fbf">voix</span><span style="color:#000000"> </span><span style="color:#3f5fbf">int</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">son</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nombre</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">voix</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@param</span><span style="color:#000000"> </span><span style="color:#3f5fbf">sieges</span><span style="color:#000000"> </span><span style="color:#3f5fbf">int</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">son</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nombre</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">sieges</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@param</span><span style="color:#000000"> </span><span style="color:#3f5fbf">elimine</span><span style="color:#000000"> </span><span style="color:#3f5fbf">boolean</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">son</span><span style="color:#000000"> </span><span style="color:#3f5fbf">état</span><span style="color:#000000"> </span><span style="color:#3f5fbf">éliminé</span><span style="color:#000000"> </span><span style="color:#3f5fbf">ou</span><span style="color:#000000"> </span><span style="color:#3f5fbf">non</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ListeElectorale(</span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> id,String nom, </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> voix, </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> sieges, </span><span style="font-weight:bold;color:#7f0055">boolean</span><span style="color:#000000"> elimine) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@return</span><span style="color:#000000"> </span><span style="color:#3f5fbf">int</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">l&#x27;identifiant</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> getId() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="color:#3f5fbf">initialise</span><span style="color:#000000"> </span><span style="color:#3f5fbf">l&#x27;identifiant</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@param</span><span style="color:#000000"> </span><span style="color:#3f5fbf">id</span><span style="color:#000000"> </span><span style="color:#3f5fbf">int</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">identifiant</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@throws</span><span style="color:#000000"> </span><span style="color:#3f5fbf">ElectionsException</span><span style="color:#000000"> </span><span style="color:#3f5fbf">si</span><span style="color:#000000"> </span><span style="color:#3f5fbf">id&lt;1</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> setId(</span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> id) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@return</span><span style="color:#000000"> </span><span style="color:#3f5fbf">String</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">le</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nom</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> String getNom() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="color:#3f5fbf">initialise</span><span style="color:#000000"> </span><span style="color:#3f5fbf">le</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nom</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@param</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nom</span><span style="color:#000000"> </span><span style="color:#3f5fbf">String</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nom</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f9fbf">@throws</span><span style="color:#000000"> </span><span style="color:#3f5fbf">ElectionsException</span><span style="color:#000000"> </span><span style="color:#3f5fbf">si</span><span style="color:#000000"> </span><span style="color:#3f5fbf">le</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nom</span><span style="color:#000000"> </span><span style="color:#3f5fbf">est</span><span style="color:#000000"> </span><span style="color:#3f5fbf">vide</span><span style="color:#000000"> </span><span style="color:#3f5fbf">ou</span><span style="color:#000000"> </span><span style="color:#3f5fbf">blanc</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> setNom(String nom) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@return</span><span style="color:#000000"> </span><span style="color:#3f5fbf">int</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">le</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nombre</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">voix</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> getVoix() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> ...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="color:#3f5fbf">initialise</span><span style="color:#000000"> </span><span style="color:#3f5fbf">le</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nombre</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">voix</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@param</span><span style="color:#000000"> </span><span style="color:#3f5fbf">voix</span><span style="color:#000000"> </span><span style="color:#3f5fbf">int</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">le</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nombre</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">voix</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> setVoix(</span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> voix) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> ...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@return</span><span style="color:#000000"> </span><span style="color:#3f5fbf">int</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">le</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nombre</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">sièges</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> getSieges() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> ...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="color:#3f5fbf">fixe</span><span style="color:#000000"> </span><span style="color:#3f5fbf">le</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nombre</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">sièges</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@param</span><span style="color:#000000"> </span><span style="color:#3f5fbf">sieges</span><span style="color:#000000"> </span><span style="color:#3f5fbf">int</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">le</span><span style="color:#000000"> </span><span style="color:#3f5fbf">nombre</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">sièges</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> setSieges(</span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> sieges) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@return</span><span style="color:#000000"> </span><span style="color:#3f5fbf">boolean</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">valeur</span><span style="color:#000000"> </span><span style="color:#3f5fbf">du</span><span style="color:#000000"> </span><span style="color:#3f5fbf">champ</span><span style="color:#000000"> </span><span style="color:#3f5fbf">elimine</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">boolean</span><span style="color:#000000"> isElimine() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  ...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@param</span><span style="color:#000000"> </span><span style="color:#3f5fbf">sieges</span><span style="color:#000000"> </span><span style="color:#3f5fbf">int</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> setElimine(</span><span style="font-weight:bold;color:#7f0055">boolean</span><span style="color:#000000"> elimine) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> ...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#3f5fbf">/**</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f9fbf">@return</span><span style="color:#000000"> </span><span style="color:#3f5fbf">String</span><span style="color:#000000"> </span><span style="color:#3f5fbf">:</span><span style="color:#000000"> </span><span style="color:#3f5fbf">identité</span><span style="color:#000000"> </span><span style="color:#3f5fbf">de</span><span style="color:#000000"> </span><span style="color:#3f5fbf">la</span><span style="color:#000000"> </span><span style="color:#3f5fbf">liste</span><span style="color:#000000"> </span><span style="color:#3f5fbf">électorale</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">     </span><span style="color:#3f5fbf">*/</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> String toString() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">   ...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>regel 8: een uniek identificatienummer voor een lijst. Dit is hier niet noodzakelijk, maar is bedoeld voor toekomstig gebruik.
+  </li>
+  <li>regel 13: de naam van de lijst.
+  </li>
+  <li>regel 17: het aantal stemmen van de lijst
+  </li>
+  <li>regel 21: het aantal zetels van de lijst
+  </li>
+  <li>regel 25: booleaanse waarde die aangeeft of de lijst is uitgesloten (percentage behaalde stemmen onder de kiesdrempel) of niet.
+  </li>
+</ul>
+
+<p>Elk privéveld met de naam [xyz] kan worden geïnitialiseerd met een methode genaamd [setXyz]. Met de methode [getXyz] kan de waarde van het privéveld [xyz] worden opgehaald. In het specifieke geval waarin [xyz] een veld van het type booleaanse waarde is, kan de methode [getXyz] worden vervangen door de methode [isXyz]. De specifieke naamgeving van deze methoden volgt een coderingsstandaard die de <strong>JavaBean</strong>-standaard wordt genoemd. Daarom definiëren we de volgende openbare methoden:</p>
+<ul>
+  <li>getId (regel 48), setId (regel 57)
+  </li>
+  <li>getNom (regel 65), setNom (regel 74)
+  </li>
+  <li>getVoix (regel 82), setVoix (regel 90)
+  </li>
+  <li>getSieges (regel 98), setSieges (regel 106)
+  </li>
+  <li>isElimine (regel 114), setElimine (regel 122)
+  </li>
+</ul>
+
+<ul>
+  <li>regels 30-31: definiëren een constructor zonder parameters. Hiermee kan een object [ListeElectorale] worden aangemaakt zonder het te initialiseren. Dit object kan vervolgens worden geïnitialiseerd met behulp van <b>de set-methoden</b>.
+  </li>
+  <li>regels 40-42: definiëren een constructor waarmee een [ListeElectorale]-object kan worden aangemaakt en tegelijkertijd de vijf privévelden ervan worden geïnitialiseerd.
+  </li>
+  <li>regels 130-132: definiëren de methode [toString] die een tekenreeks retourneert met de waarden van de vijf velden van het object.
+  </li>
+</ul>
+
+<p>Een testprogramma voor de klasse <strong>ListeElectorale</strong> zou er als volgt uit kunnen zien:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> istia.st.elections.tests;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> istia.st.elections.ListeElectorale;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> MainTest1ListeElectorale {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">static</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> main(String[] args) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// opstellen van een kieslijst</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        ListeElectorale listeElectorale1 = </span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> ListeElectorale(1, </span><span style="color:#2a00ff">&quot;A&quot;</span><span style="color:#000000">, 32000,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                0, </span><span style="font-weight:bold;color:#7f0055">false</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// weergave van de identiteit van de lijst</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;listeElectorale1=&quot;</span><span style="color:#000000"> + listeElectorale1);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// het aantal zetels wijzigen</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        listeElectorale1.setSieges(2);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// weergave identiteit lijst 1</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;listeElectorale1=&quot;</span><span style="color:#000000"> + listeElectorale1);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// een nieuwe kieslijst</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        ListeElectorale listeElectorale2 = listeElectorale1;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// weergave identiteit lijst 2</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;listeElectorale2=&quot;</span><span style="color:#000000"> + listeElectorale2);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// wijziging van het aantal zetels</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        listeElectorale2.setSieges(3);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// identiteitsweergave van beide lijsten</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;listeElectorale2=&quot;</span><span style="color:#000000"> + listeElectorale2);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;listeElectorale1=&quot;</span><span style="color:#000000"> + listeElectorale1);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>De Eclipse-omgeving voor deze test zou er als volgt uit kunnen zien:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000002E20000016F883805FD.png" width="258" height="129" style="display:inline-block; margin:4px;width:6.83cm;height:3.401cm;" class="odt-zoomable" data-zoom-src="images/10000000000002E20000016F883805FD.png" /></td></tr></table>
+
+<ul>
+  <li>[1]: het project heet [elections-02A]
+  </li>
+  <li>[2]: de applicatie wordt in een pakket geplaatst, in dit geval [istia.st.elections]
+  </li>
+  <li>[3]: [ListeElectorale.java] is de broncode van de klasse [ListeElectorale]
+  </li>
+  <li>[4]: de testklassen worden in een pakket geplaatst, in dit geval [istia.st.elections.tests]
+  </li>
+  <li>[5]: de testklasse [MainTest1ListeElectorale]
+  </li>
+</ul>
+
+<p>De schermweergave na uitvoering van het bovenstaande programma is als volgt:</p>
+<p><img src="images/1000000000000153000000893AA31019.png" width="218" height="88" style="width:5.78cm;height:2.32cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000153000000893AA31019.png" /></p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Opdracht</strong>: vul, aan de hand van het bovenstaande, de code van de klasse <strong>ListeElectorale</strong> aan.</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<p><span id="refheading317691812363491" name="refheading317691812363491" class="odt-bookmark-anchor"></span></p>
+<h2 id="33-aanmaken-van-een-uitzonderingsklasse-electionsexception">3.3. <span style="color: #4f81bd">Aanmaken van een uitzonderingsklasse [ElectionsException]</span></h2>
+<p>Onder de verschillende uitzonderingsklassen van de Java-taal bevindt zich er een met de naam [RuntimeException]. Deze klasse is afgeleid van de klasse [Exception], de basis van alle uitzonderingsklassen. Het bijzondere aan instanties van [RuntimeException] of daarvan afgeleide instanties is dat men ze niet hoeft te declareren of te beheren. Men noemt ze <strong>ongecontroleerde uitzonderingen</strong>.</p>
+<p>Laten we een eerste voorbeeld nemen. De klasse [BufferedReader] is een klasse waarvan de instanties het mogelijk maken om tekstregels uit een gegevensstroom te lezen. Deze klasse beschikt over een methode [readLine] met de volgende signatuur:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>public String readLine()throws IOException
+</code></pre></div>
+<p>We zien dat de methode een uitzondering van het type [IOException] kan genereren. De structuur van deze klasse is als volgt:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>java.lang.Object
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>  java.lang.Throwable
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>      java.lang.Exception
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>          java.io.IOException
+</code></pre></div></td></tr></table></div>
+<p>De klasse [IOException] is afgeleid van de klasse [Exception] (regel 3). De compiler dwingt ons om uitzonderingen van het type [java.lang.Exception] of daarvan afgeleide typen af te handelen en te declareren (behalve voor de tak [RuntimeException], die we later zullen bespreken). Om een tekstregel in te lezen die via het toetsenbord is ingevoerd, moeten we dus iets schrijven als:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>BufferedReader clavier=....;
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>String ligne=null;
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>try{
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>    ligne=clavier.readLine();
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>}catch (IOException ex){
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>     // de uitzondering beheren
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>    ....
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>}
+</code></pre></div></td></tr></table></div>
+<p>Laten we nog een voorbeeld nemen. Om een tekenreeks om te zetten in een geheel getal kun je de statische methode [Integer.parseInt] gebruiken, waarvan de signatuur als volgt is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>public static int parseInt(String s) throws NumberFormatException
+</code></pre></div>
+<p>Het argument [s] is de tekenreeks die in een geheel getal moet worden omgezet. We zien dat de methode een uitzondering van het type [NumberFormatException] kan genereren. De structuur van deze klasse is als volgt:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>java.lang.Object
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>  java.lang.Throwable
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>      java.lang.Exception
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>          java.lang.RuntimeException
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>              java.lang.IllegalArgumentException
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>                  java.lang.NumberFormatException
+</code></pre></div></td></tr></table></div>
+<p>De klasse [NumberFormatException] is afgeleid van de klasse [RuntimeException] (regel 4). De compiler dwingt ons niet om uitzonderingen van het type [java.lang.RuntimeException] of daarvan afgeleide typen te beheren en te declareren. We kunnen dus iets schrijven als:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span>
+<span class="normal"><a href="#__codelineno-6-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>BufferedReader clavier=....;
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>String ligne=null;
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>try{
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>    ligne=clavier.readLine();
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>}catch (IOException ex){
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>     // de uitzondering afhandelen
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>    ....
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>}
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>int age=Integer.parseInt(ligne);
+</code></pre></div></td></tr></table></div>
+<p>We hoeven geen [try - catch]-clausule op te nemen om de eventuele uitzondering af te handelen die door [Integer.parseInt] (regel 9) wordt gegenereerd.</p>
+<p>Het aanmaken en gebruiken van uitzonderingsklassen die zijn afgeleid van [RuntimeException] heeft voor- en nadelen:</p>
+<ul>
+  <li>wat de voordelen betreft: de code is lichter
+  </li>
+  <li>wat de nadelen betreft: men kan terugvallen op C-methoden waarbij elke functie een foutcode retourneert die maar weinig mensen gebruiken, juist om de code lichter te houden. Wanneer zich een dergelijke onbehandelde fout voordoet, crasht het programma, meestal op een weinig elegante manier.
+  </li>
+</ul>
+
+<p>We besluiten een speciale klasse aan te maken waarin alle uitzonderingen worden gebundeld die in onze applicatie ELECTIONS kunnen optreden. Deze krijgt de naam [ElectionsException] en is afgeleid van de klasse [RuntimeException]. De code ervan is als volgt:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> istia.st.elections;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> ElectionsException </span><span style="font-weight:bold;color:#7f0055">extends</span><span style="color:#000000"> RuntimeException {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">static</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">final</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">long</span><span style="color:#000000"> </span><span style="font-weight:bold;font-style:italic;color:#0000c0">serialVersionUID</span><span style="color:#000000"> = 1L;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ElectionsException() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">super</span><span style="color:#000000">();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ElectionsException(String </span><span style="color:#6a3e3e">message</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">super</span><span style="color:#000000">(</span><span style="color:#6a3e3e">message</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ElectionsException(Throwable </span><span style="color:#6a3e3e">cause</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">super</span><span style="color:#000000">(</span><span style="color:#6a3e3e">cause</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ElectionsException(String </span><span style="color:#6a3e3e">message</span><span style="color:#000000">, Throwable </span><span style="color:#6a3e3e">cause</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">super</span><span style="color:#000000">(</span><span style="color:#6a3e3e">message</span><span style="color:#000000">, </span><span style="color:#6a3e3e">cause</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>regel 1: we plaatsen de klasse in het pakket [istia.st.elections];
+  </li>
+  <li>regel 3: de klasse is afgeleid van [RuntimeException]. Ze is dus <b>niet gecontroleerd</b>;
+  </li>
+  <li>regel 4: een serialisatie-ID die we voorlopig kunnen negeren;
+  </li>
+  <li>we zullen in onze applicatie twee soorten constructors gebruiken:
+    <ul>
+      <li>de klassieke constructor van de regels 15-17, zoals hieronder:
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>throw new ElectionsException(&quot;Le nombre de sièges doit être &gt;0&quot;)
+</code></pre></div>
+<p>In dit geval kan de methode die een methode aanroept die een dergelijke uitzondering genereert, deze als volgt afhandelen:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// uitzondering testen</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">try</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            listeElectorale2.setSieges(-3);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        } </span><span style="font-weight:bold;color:#7f0055">catch</span><span style="color:#000000"> (ElectionsException ex) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            System.</span><span style="font-style:italic;color:#0000c0">err</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;L&#x27;exception suivante s&#x27;est produite : [&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                    + ex.toString() + </span><span style="color:#2a00ff">&quot;]&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+</code></pre></div>
+
+<ul>
+  <li>(vervolg)
+    <ul>
+      <li>of die van de regels 14-20, bedoeld om een reeds opgetreden uitzondering door te geven door deze in te kapselen in een uitzondering van het type [ElectionsException]:
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">try</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        ...;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        } </span><span style="font-weight:bold;color:#7f0055">catch</span><span style="color:#000000"> (SQLException ex) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000">// de uitzondering wordt ingekapseld</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            throw </span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> ElectionsException(</span><span style="color:#2a00ff">&quot;erreur de fermeture de la connexion à la BD&quot;</span><span style="color:#000000">,</span>ex);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+</code></pre></div>
+
+<p>Deze tweede methode heeft het voordeel dat de informatie die de eerste uitzondering kan bevatten, behouden blijft. In dit geval kan de methode die een methode aanroept die een dergelijke uitzondering genereert, deze als volgt afhandelen:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">try</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            ...;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        } </span><span style="font-weight:bold;color:#7f0055">catch</span><span style="color:#000000"> (ElectionsException ex) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(ex.getMessage() + </span><span style="color:#2a00ff">&quot;, Cause : &quot;</span>+ ex.getCause().getMessage());</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            System.<span style="font-style:italic">exit</span>(1);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+</code></pre></div>
+
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Te doen</strong>: pas de code van de klasse <strong>ListeElectorale</strong> zodanig aan dat de <strong>set-methoden</strong> een uitzondering van het type [ElectionsException] genereren als de gevraagde initialisatie onjuist is, zoals bijvoorbeeld het initialiseren van de naam met een lege tekenreeks.</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<p>Het Eclipse-testproject voor deze nieuwe versie zou er als volgt uit kunnen zien:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000002DE000001891C512EB6.png" width="257" height="138" style="display:inline-block; margin:4px;width:6.8cm;height:3.641cm;" class="odt-zoomable" data-zoom-src="images/10000000000002DE000001891C512EB6.png" /></td></tr></table>
+
+<ul>
+  <li>[1]: het project heet [elections-02B]
+  </li>
+  <li>[2]: de applicatie is ondergebracht in een pakket, in dit geval [istia.st.elections]
+  </li>
+  <li>[3]: de klassen [ListeElectorale] en [ElectionsException]
+  </li>
+  <li>[4]: de testklassen zijn ondergebracht in een pakket, in dit geval [istia.st.elections.tests]
+  </li>
+  <li>[5]: de testklasse [MainTest1ListeElectorale]
+  </li>
+</ul>
+
+<p>De reeds besproken testklasse [MainTest1ListeElectorale] is licht aangepast om uitzonderingsgevallen te testen:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> istia.st.elections.tests;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> istia.st.elections.ElectionsException;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> istia.st.elections.ListeElectorale;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> MainTest1ListeElectorale {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">static</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> main(String[] args) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// opstellen van een kieslijst</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        ListeElectorale listeElectorale1 = </span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> ListeElectorale(1, </span><span style="color:#2a00ff">&quot;A&quot;</span><span style="color:#000000">, 32000,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                0, </span><span style="font-weight:bold;color:#7f0055">false</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// identiteit van de lijst weergeven</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;listeElectorale1=&quot;</span><span style="color:#000000"> + listeElectorale1);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// aantal zetels wijzigen</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        listeElectorale1.setSieges(2);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// identiteit van lijst 1 weergeven</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;listeElectorale1=&quot;</span><span style="color:#000000"> + listeElectorale1);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// een nieuwe kieslijst</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        ListeElectorale listeElectorale2 = listeElectorale1;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// weergave identiteit lijst 2</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;listeElectorale2=&quot;</span><span style="color:#000000"> + listeElectorale2);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// wijziging van het aantal zetels</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        listeElectorale2.setSieges(3);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// weergave van de identiteit van de 2 lijsten</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;listeElectorale2=&quot;</span><span style="color:#000000"> + listeElectorale2);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;listeElectorale1=&quot;</span><span style="color:#000000"> + listeElectorale1);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// uitzonderingstest</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">try</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            listeElectorale2.setSieges(-3);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        } </span><span style="font-weight:bold;color:#7f0055">catch</span><span style="color:#000000"> (ElectionsException ex) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            System.</span><span style="font-style:italic;color:#0000c0">err</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;L&#x27;exception suivante s&#x27;est produite : [&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                    + ex.toString() + </span><span style="color:#2a00ff">&quot;]&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>regel 28: er wordt geprobeerd het aantal zitplaatsen te initialiseren met een ongeldige waarde
+  </li>
+  <li>regel 30: als er een uitzondering optreedt, wordt deze weergegeven
+  </li>
+</ul>
+
+<p>De uitvoering van de test levert de volgende resultaten op:</p>
+<p><img src="images/10000000000003990000009D8D7FAF3A.png" width="645" height="110" style="width:17.06cm;height:2.91cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003990000009D8D7FAF3A.png" /></p>
+<p>We zien dat de klasse [ListeElectorale] inderdaad een uitzondering heeft gegenereerd toen we het aantal zitplaatsen wilden initialiseren met een ongeldige waarde (regel 28 van de code).</p>
+<p><span id="refheading317711812363491" name="refheading317711812363491" class="odt-bookmark-anchor"></span></p>
+<h2 id="34-een-unit-testklasse">3.4. <span style="color: #4f81bd">Een unit-testklasse</span></h2>
+<p>Het vorige type test is gebaseerd op een visuele controle. Er wordt gecontroleerd of op het scherm wordt weergegeven wat verwacht wordt. Deze methode wordt in een professionele omgeving afgeraden. Tests moeten altijd zoveel mogelijk worden geautomatiseerd en ernaar streven dat er geen menselijke tussenkomst nodig is. De mens is namelijk onderhevig aan vermoeidheid en zijn vermogen om tests te controleren neemt in de loop van de dag af.</p>
+<p>Een applicatie evolueert in de loop van de tijd. Bij elke wijziging moet worden gecontroleerd of de applicatie geen „regressie” vertoont, c.a.d, en of ze nog steeds de functionele tests doorstaat die bij de oorspronkelijke ontwikkeling waren uitgevoerd. Deze tests worden „non-regressietests” genoemd. Een applicatie van enige omvang kan honderden tests vereisen. Elke methode van elke klasse in de applicatie wordt namelijk getest. Dit worden <strong>unit-tests</strong> genoemd. Deze kunnen veel ontwikkelaars in beslag nemen als ze niet zijn geautomatiseerd.</p>
+<p>Er zijn tools ontwikkeld om de tests te automatiseren. Een daarvan heet [JUnit]. Dit is een bibliotheek met klassen die bedoeld zijn om de tests te beheren. We gaan deze tool gebruiken om de klasse [ListeElectorale] te testen.</p>
+<p>Een testprogramma JUnit (versies 4.x) ziet er als volgt uit:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> istia.st.elections.tests;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.Assert;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.After;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.Before;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.Test;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> JUnitEssai {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@Before</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> avant() </span><span style="font-weight:bold;color:#7f0055">throws</span><span style="color:#000000"> Exception {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;tearUp&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@After</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> après() </span><span style="font-weight:bold;color:#7f0055">throws</span><span style="color:#000000"> Exception {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;tearDown&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@Test</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> t1() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;test1&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Assert.<span style="font-style:italic">assertEquals</span>(1, 1);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@Test</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> t2() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;test2&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Assert.<span style="font-style:italic">assertEquals</span>(1, 2);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>regel 1: de klasse is ondergebracht in het pakket [istia.st.elections.tests];
+  </li>
+  <li>regel 11: de methode die is geannoteerd met de annotatie [@Before] wordt <b>vóór </b>elke unit-test uitgevoerd; 
+  </li>
+  <li>regel 16: de methode die is geannoteerd met de annotatie [@After] wordt <b>na </b>elke unit-test uitgevoerd;
+  </li>
+  <li>regel 21: een methode die is geannoteerd met de annotatie [@Test] is een methode die door de unit-test wordt getest. De methoden die zijn geannoteerd met [@Test] worden achtereenvolgens uitgevoerd, tenzij de tester anders aangeeft; deze kan zelf de te testen methoden selecteren. Vóór elke uitvoering van een methode [@Test] wordt de methode [@Before] uitgevoerd.  Na elke uitvoering van een methode [@Test] wordt de methode [@After] uitgevoerd;
+  </li>
+  <li>regels 22-25: definiëren een testmethode [t1];
+  </li>
+  <li>regel 18: een van de methoden [Assert.assert*] waarmee beweringen kunnen worden gecontroleerd. Er zijn de volgende methoden [assert]:
+    <ul>
+      <li><b>assertEquals(uitdrukking1, uitdrukking2)</b>: controleert of de waarden van beide uitdrukkingen gelijk zijn. Er worden veel soorten uitdrukkingen geaccepteerd (int, String, float, double, boolean, char, short). Als de twee uitdrukkingen niet gelijk zijn, wordt er een uitzondering van het type [AssertionFailedError ] gegenereerd,
+      </li>
+      <li><b>assertEquals(reëel1, reëel2, delta)</b>: controleert of twee reële getallen op <b>delta </b>na gelijk zijn, c.a.d abs(reëel1-reëel2) &lt;= delta. Men kan bijvoorbeeld <b>assertEquals(reëel1, reëel2, 1E-6) </b>schrijven om te controleren of twee waarden gelijk zijn tot op 10⁻⁶ nauwkeurig,
+      </li>
+      <li><b>assertEquals(message, expression1, expression2) </b>en <b>assertEquals(message, réel1, réel2, delta) </b>zijn varianten waarmee de foutmelding kan worden gespecificeerd die moet worden gekoppeld aan de uitzondering van het type [AssertionFailedError] die wordt gegenereerd wanneer de methode [assertEquals] mislukt,
+      </li>
+      <li><b>assertNotNull(Object) </b>en <b>assertNotNull(message, Object)</b>: controleert of <b>Object </b>niet gelijk is aan <b>null,</b>
+      </li>
+      <li><b>assertNull(Object) </b>en <b>assertNull(message, Object)</b>: controleert of <b>Object </b>gelijk is aan <b>null,</b>
+      </li>
+      <li><b>assertSame(Object1, Object2) </b>en <b>assertSame(message, Object1, Object2)</b>: controleert of de verwijzingen <b>Object1 </b>en <b>Object2 </b>naar hetzelfde object verwijzen,
+      </li>
+      <li><b>assertNotSame(Object1, Object2) </b>en <b>assertNotSame(message, Object1, Object2)</b>: controleert of de verwijzingen <b>Object1 </b>en <b>Object2 </b>niet naar hetzelfde object verwijzen;
+      </li>
+    </ul>
+  </li>
+  <li>regel 24: deze bewering moet slagen;
+  </li>
+  <li>regel 30: deze assertie moet mislukken;
+  </li>
+</ul>
+
+<p>In de Eclipse-omgeving kan een testklasse JUnit als volgt worden aangemaakt:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004FD0000037B88E88961.png" width="447" height="312" style="display:inline-block; margin:4px;width:11.83cm;height:8.25cm;" class="odt-zoomable" data-zoom-src="images/10000000000004FD0000037B88E88961.png" /></td></tr></table>
+
+<ul>
+  <li>[1]: klik met de rechtermuisknop op het pakket waaraan je de testklasse wilt toevoegen, en selecteer vervolgens de optie [JUnit / New / JUnit Test Case]
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004F90000033A032509E4.png" width="637" height="413" style="display:inline-block; margin:4px;width:16.842cm;height:10.927cm;" class="odt-zoomable" data-zoom-src="images/10000000000004F90000033A032509E4.png" /></td></tr></table>
+
+<ul>
+  <li>[1]: een versie selecteren JUnit;
+  </li>
+  <li>[2]: de map selecteren waarin de testklasse moet worden aangemaakt;
+  </li>
+  <li>[3]: keuze van het pakket waarin de testklasse moet worden aangemaakt;
+  </li>
+  <li>[4]: naam van de testklasse;
+  </li>
+  <li>[5]: keuze van de methoden die moeten worden opgenomen in de klasse die zal worden gegenereerd;
+  </li>
+  <li>[6]: de klasse <i>JUnitEssai </i>is gegenereerd
+  </li>
+</ul>
+
+<p>De vorige wizard genereert een vrijwel lege klasse:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> istia.st.elections.tests;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.Assert;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.After;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.Before;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> JUnitEssai {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@Before</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> setUp() </span><span style="font-weight:bold;color:#7f0055">throws</span><span style="color:#000000"> Exception {        </span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@After</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> tearDown() </span><span style="font-weight:bold;color:#7f0055">throws</span><span style="color:#000000"> Exception {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>Laten we de vorige code als volgt aanvullen en aanpassen:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> istia.st.elections.tests;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.Assert;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.After;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.Before;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.Test;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> JUnitEssai2 {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@Before</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> avant() </span><span style="font-weight:bold;color:#7f0055">throws</span><span style="color:#000000"> Exception {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;tearUp&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@After</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> après() </span><span style="font-weight:bold;color:#7f0055">throws</span><span style="color:#000000"> Exception {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;tearDown&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@Test</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> t1() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;test1&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Assert.<span style="font-style:italic">assertEquals</span>(1, 1);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@Test</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> t2() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        System.</span><span style="font-style:italic;color:#0000c0">out</span><span style="color:#000000">.println(</span><span style="color:#2a00ff">&quot;test2&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Assert.<span style="font-style:italic">assertEquals</span>(1, 2);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>In Eclipse kun je de testklasse uitvoeren door er met de rechtermuisknop op te klikken en vervolgens de optie [Run as / JUnit test] te selecteren:</p>
+<p><img src="images/10000000000002C00000023086FCFE78.png" width="423" height="336" style="width:11.18cm;height:8.89cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002C00000023086FCFE78.png" /></p>
+<p>De resultaten van deze test zijn als volgt:</p>
+<p><img src="images/10000000000001710000011C1DE344A2.png" width="258" height="199" style="width:6.83cm;height:5.26cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001710000011C1DE344A2.png" /></p>
+<p>Hierboven is de methode [test2] mislukt. Telkens wanneer een test mislukt, wordt er een foutmelding aan gekoppeld. Voor [test2] is dat de hierboven weergegeven melding. De melding geeft het regelnummer aan waar de fout is opgetreden (regel 30). Op regel 30 was de mislukte aanroep:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">    Assert.<span style="font-style:italic">assertEquals</span>(1, 2);</span></span>
+</code></pre></div>
+
+<p>De eerste parameter wordt de verwachte waarde genoemd, de tweede de werkelijke waarde. De foutmelding van [test2] hierboven geeft aan dat de verwachte waarde 2 was, maar dat de werkelijke waarde 3 was.</p>
+<p>Ten slotte waren de berichten die door de verschillende testmethoden op de console werden weergegeven als volgt:</p>
+<p><img src="images/100000000000012100000099C3174063.png" width="164" height="110" style="width:4.33cm;height:2.91cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000012100000099C3174063.png" /></p>
+<p>Deze berichten tonen aan dat de methoden [@Before] en [@After] inderdaad respectievelijk vóór en na elke testmethode zijn aangeroepen.</p>
+<p>De testklassen worden niet noodzakelijkerwijs door de ontwikkelaars zelf geschreven. Ze kunnen ook worden geschreven door degenen die de specificaties van de applicatie hebben opgesteld. Bepaalde ontwikkelingsmethoden, ook wel TDD (Test Driven Development) genoemd, raden aan om de testklassen te schrijven nog voordat de te testen klassen worden geschreven. Dit maakt het soms mogelijk om specificaties te verduidelijken die anders op verschillende manieren zouden kunnen worden geïnterpreteerd.</p>
+<p>Laten we een JUnit 4-test maken, genaamd [JUnitTest1ListeElectorale], voor de klasse [ListeElectorale]. In Eclipse gaan we te werk zoals eerder beschreven:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001C6000001AB22F05F4D.png" width="318" height="299" style="display:inline-block; margin:4px;width:8.41cm;height:7.909cm;" class="odt-zoomable" data-zoom-src="images/10000000000001C6000001AB22F05F4D.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000FA000000DEA23A34D9.png" width="175" height="155" style="display:inline-block; margin:4px;width:4.63cm;height:4.11cm;" class="odt-zoomable" data-zoom-src="images/10000000000000FA000000DEA23A34D9.png" /></td></tr></table>
+
+<p>We vullen de door de wizard gegenereerde code als volgt aan:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> istia.st.elections.tests;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.Assert;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> istia.st.elections.ElectionsException;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> istia.st.elections.ListeElectorale;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.junit.Test;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> JUnitTest1ListeElectorale {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@Test</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> t1() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// opstellen kieslijst</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        ListeElectorale liste = </span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> ListeElectorale(1, </span><span style="color:#2a00ff">&quot;a&quot;</span><span style="color:#000000">, 32000, 0, </span><span style="font-weight:bold;color:#7f0055">false</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// controles</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        Assert.</span><span style="font-style:italic;color:#000000">assertEquals</span><span style="color:#000000">(</span><span style="color:#2a00ff">&quot;a&quot;</span><span style="color:#000000">, liste.getNom());</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Assert.<span style="font-style:italic">assertEquals</span>(32000, liste.getVoix());</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        Assert.</span><span style="font-style:italic;color:#000000">assertEquals</span><span style="color:#000000">(</span><span style="font-weight:bold;color:#7f0055">false</span><span style="color:#000000">, liste.isElimine());</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Assert.<span style="font-style:italic">assertEquals</span>(0, liste.getSieges());</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// controle geldigheid ID</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">boolean</span><span style="color:#000000"> erreur = </span><span style="font-weight:bold;color:#7f0055">false</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">try</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            liste.setId(-4);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        } </span><span style="font-weight:bold;color:#7f0055">catch</span><span style="color:#000000"> (ElectionsException e) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            erreur = </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        Assert.</span><span style="font-style:italic;color:#000000">assertEquals</span><span style="color:#000000">(</span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">, erreur);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// controle geldigheid naam</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        erreur = </span><span style="font-weight:bold;color:#7f0055">false</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">try</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            liste.setNom(</span><span style="color:#2a00ff">&quot;&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        } </span><span style="font-weight:bold;color:#7f0055">catch</span><span style="color:#000000"> (ElectionsException e) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            erreur = </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        Assert.</span><span style="font-style:italic;color:#000000">assertEquals</span><span style="color:#000000">(</span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">, erreur);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// controle geldigheid stemmen</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        erreur = </span><span style="font-weight:bold;color:#7f0055">false</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">try</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            liste.setVoix(-4);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        } </span><span style="font-weight:bold;color:#7f0055">catch</span><span style="color:#000000"> (ElectionsException e) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            erreur = </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        Assert.</span><span style="font-style:italic;color:#000000">assertEquals</span><span style="color:#000000">(</span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">, erreur);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// controle geldigheid zetels</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        erreur = </span><span style="font-weight:bold;color:#7f0055">false</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">try</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            liste.setSieges(-4);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        } </span><span style="font-weight:bold;color:#7f0055">catch</span><span style="color:#000000"> (ElectionsException e) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            erreur = </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        Assert.</span><span style="font-style:italic;color:#000000">assertEquals</span><span style="color:#000000">(</span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">, erreur);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>Het uitvoeren van de test levert het volgende resultaat op:</p>
+<p><img src="images/1000000000000173000000C0D6037593.png" width="260" height="135" style="width:6.87cm;height:3.56cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000173000000C0D6037593.png" /></p>
+<p>De tests zijn geslaagd. We gaan er nu vanuit dat we een operationele klasse [ListeElectorale] hebben.</p>
+<p><span id="refheading317731812363491" name="refheading317731812363491" class="odt-bookmark-anchor"></span></p>
+<h2 id="35-mainelections-versie-2">3.5. <span style="color: #4f81bd">MainElections: versie 2</span></h2>
+<p><strong>Aanbevolen lectuur</strong>:</p>
+<ul>
+  <li>paragrafen 2.1, 2.2, 2.4 en 2.7 van hoofdstuk 2 van [1]: Klassen en interfaces
+  </li>
+  <li>paragrafen 3.3 (klasse String), 3.5 (klasse ArrayList), 3.6 (klasse Arrays)
+  </li>
+</ul>
+
+<p>We willen de applicatie [Elections] herschrijven en daarbij de volgende nieuwe beperkingen toevoegen:</p>
+<ul>
+  <li>de klasse [ListeElectorale] wordt gebruikt om een kandidatenlijst weer te geven
+  </li>
+  <li>de applicatie zal via het toetsenbord de volgende informatie opvragen:
+  </li>
+  <li>het aantal te vervullen zetels
+  </li>
+  <li>de namen en stemmen van de lijsten. Het is vooraf niet bekend hoeveel lijsten er zijn. De laatste lijst wordt aangeduid met een naam die gelijk is aan de tekenreeks &quot;*&quot;.
+  </li>
+  <li>Omdat het aantal lijsten vooraf niet bekend is, worden deze eerst opgeslagen in een object van het type [ArrayList]. Zodra alle lijsten zijn ingevoerd, worden ze vervolgens overgebracht naar een lijsttabel.
+  </li>
+  <li>De resultaten worden weergegeven in aflopende volgorde van het aantal behaalde zetels.
+  </li>
+</ul>
+
+<p>Om een array T te sorteren, zijn er verschillende statische methoden beschikbaar van de klasse [Arrays]:</p>
+<ul>
+  <li><b>Arrays.sort(T)</b>: sorteert de tabel T volgens een natuurlijke volgorde, indien deze bestaat (oplopend voor getallen, datums, alfabetisch voor tekenreeksen, ...)
+  </li>
+  <li><b>Arrays.sort(T,vergelijker)</b>: voor het sorteren van tabellen T die geen natuurlijke volgorde hebben. Dit is hier het geval voor de tabel met lijsten die moet worden gesorteerd op basis van een specifiek veld van de lijst: het aantal behaalde zetels.
+  </li>
+</ul>
+
+<p>In de methode <strong>Arrays.sort(T,vergelijker)</strong> is de parameter <strong>‘vergelijker’</strong> een object dat de volgende <strong>Comparator-interface</strong> implementeert:</p>
+<p><img src="images/10000000000002110000009A0EFC1F82.png" width="370" height="108" style="width:9.8cm;height:2.85cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002110000009A0EFC1F82.png" /></p>
+<ul>
+  <li>met de methode `<b>compare` </b>kunnen twee elementen van de array T worden vergeleken
+  </li>
+  <li>met de methode <b>equals </b>kan worden vastgesteld of twee objecten gelijk zijn
+  </li>
+</ul>
+
+<p>Beide methoden vergelijken <strong>objecten</strong> van het type <em>obj1</em> en <em>obj2</em>. Of <em>obj1&lt;obj2</em>, <em>obj1=obj2</em> of <em>obj1&gt;obj2</em> geldt, hangt af van de volgorde die men tussen de twee objecten wil vastleggen. Het is aan de ontwikkelaar die deze interface implementeert om aan te geven hoe men weet dat:</p>
+<ul>
+  <li><i>obj1 </i>kleiner is dan <i>obj2</i>
+  </li>
+  <li><i>obj1 </i>groter is dan <i>obj2</i>
+  </li>
+  <li><i>obj1 </i>gelijk is aan <i>obj2</i>
+  </li>
+</ul>
+
+<p>De klasse <strong>Object,</strong> waarvan elke Java-klasse afstamt, beschikt al over een methode [equals]. Om een array T met objecten van het type O te sorteren, is de methode [equals] van de klasse O niet nodig. We kunnen dus de standaardimplementatie van de klasse <strong>Object</strong> behouden. Alleen de methode [compare] moet dan worden geïmplementeerd. Deze methode wordt herhaaldelijk aangeroepen door de methode [Arrays.sort]. Deze laatste geeft telkens <strong>obj1</strong> en <strong>obj2</strong> van de methode <strong>compare</strong> als parameters door, twee elementen van de te sorteren array <strong>T</strong>. In ons geval zijn deze elementen van het type [ListeElectorale]. Hier zien we dat polymorfisme aan het werk is. De methode [compare] is gedefinieerd om parameters van het type [Object] te ontvangen. Dit betekent dat de methode parameters van het type [Object] of daarvan afgeleide typen kan ontvangen (polymorfisme). Aangezien [Object] de bovenliggende klasse is van alle Java-klassen, kunnen de daadwerkelijke parameters het type [ListeElectorale] hebben.</p>
+<p>Voor een sortering in oplopende volgorde moet de methode [compare] het volgende retourneren:</p>
+<ul>
+  <li>-1 als <i>obj1 </i>kleiner is dan <i>obj2</i>
+  </li>
+  <li>+1 als <i>obj1 </i>groter is dan <i>obj2</i>
+  </li>
+  <li>0 als <i>obj1 </i>gelijk is aan <i>obj2</i>
+  </li>
+</ul>
+
+<p>Voor een sortering in aflopende volgorde worden de waarden +1 en -1 omgedraaid. De termen „is kleiner dan”, „is groter dan” en „is gelijk aan” drukken een volgordeverhouding uit. Voor objecten van het type [ListeElectorale] geldt de relatie <strong>lijst1</strong> „is kleiner dan” <strong>lijst2</strong> als <strong>lijst1</strong> minder stemmen heeft dan <strong>lijst2</strong>.</p>
+<p>In hetzelfde bronbestand als de klasse [MainElections] kan een tweede klasse worden toegevoegd:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="o">//</span><span class="w"> </span><span class="n">vergelijkingsklasse</span><span class="w"> </span><span class="n">van</span><span class="w"> </span><span class="n">kieslijsten</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="k">class</span><span class="w"> </span><span class="n">CompareListesElectorales</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">Comparator</span><span class="w"> </span><span class="err">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">     </span><span class="o">//</span><span class="w"> </span><span class="n">vergelijking</span><span class="w"> </span><span class="n">van</span><span class="w"> </span><span class="n">twee</span><span class="w"> </span><span class="n">kieslijsten</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">basis</span><span class="w"> </span><span class="n">van</span><span class="w"> </span><span class="n">het</span><span class="w"> </span><span class="n">aantal</span><span class="w"> </span><span class="n">stemmen</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">compare</span><span class="p">(</span><span class="k">Object</span><span class="w"> </span><span class="n">obj1</span><span class="p">,</span><span class="w"> </span><span class="k">Object</span><span class="w"> </span><span class="n">obj2</span><span class="p">)</span><span class="w"> </span><span class="err">{</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">         </span><span class="o">//</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">kieslijsten</span><span class="w"> </span><span class="n">worden</span><span class="w"> </span><span class="n">opgehaald</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">        </span><span class="n">ListeElectorale</span><span class="w"> </span><span class="n">listeElectorale1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ListeElectorale</span><span class="p">)</span><span class="w"> </span><span class="n">obj1</span><span class="p">;</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">        </span><span class="n">ListeElectorale</span><span class="w"> </span><span class="n">listeElectorale2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ListeElectorale</span><span class="p">)</span><span class="w"> </span><span class="n">obj2</span><span class="p">;</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">         </span><span class="o">//</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">stemmen</span><span class="w"> </span><span class="n">van</span><span class="w"> </span><span class="n">deze</span><span class="w"> </span><span class="n">twee</span><span class="w"> </span><span class="n">lijsten</span><span class="w"> </span><span class="n">worden</span><span class="w"> </span><span class="n">vergeleken</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="p">....</span><span class="w">        </span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">    </span><span class="err">}</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="err">}</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>regel 2: de klasse is niet <b>als ‘public’</b> gedeclareerd. In een Java-bronbestand kunnen meerdere klassen voorkomen, maar slechts één klasse kan het attribuut <b>‘public’</b> hebben, namelijk de klasse met de naam van het bronbestand.
+  </li>
+</ul>
+
+<p>In de vorige methode <em>compare</em> zijn de parameters van het type <em>Object,</em>, waardoor in regels 7 en 8 de parameters van de methode moeten worden omgezet van het type <em>Object</em> naar het type <em>ListeElectorale</em>. De signatuur van de methode <em>compare</em> wordt opgelegd door de interface <em>Comparator,</em> die is geschreven om willekeurige objecten te vergelijken. Sinds JDK 1.5 bestaat er een generieke interface <em>Comparator</em>: <em>Comparator&lt;T&gt;</em>, waarbij <em>T</em> een willekeurig Java-type is. De methode <em>compare</em> van de interface <em>Comparator&lt;T&gt;</em> vergelijkt objecten van het type <em>T</em> en niet van het type <em>Object</em>, waardoor de eerdere typeconversies worden vermeden. De vergelijkingsklasse voor objecten van het type <em>ListeElectorale</em> zou er als volgt uit kunnen zien:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content">// klasse voor het vergelijken van kieslijsten</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> CompareListesElectorales </span><span style="font-weight:bold;color:#7f0055">implements</span><span style="color:#000000"> Comparator&lt;ListeElectorale&gt; {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// vergelijking van twee kieslijsten op basis van het aantal zetels</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> compare(ListeElectorale listeElectorale1,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            ListeElectorale listeElectorale2) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>regel 2: de klasse implementeert de interface <i>Comparator&lt;ListeElectorale&gt;</i>
+  </li>
+  <li>regels 5-6: de parameters van de methode <i>compare </i>zijn van het type <i>ListeElectorale</i>. Het omzetten van typen is nu overbodig.
+  </li>
+</ul>
+
+<p>JDK 1.5 heeft het concept van generieke klassen/interfaces geïntroduceerd voor diverse klassen/interfaces uit JDK 1.4, die aanvankelijk uitsluitend objecten van het type <em>Object</em> verwerkten. Dit geldt bijvoorbeeld voor lijsten, woordenboeken, ...</p>
+<p>We hebben hierboven al gezegd dat, omdat we het aantal lijsten niet kenden, we deze niet in een array konden opslaan. Ze kunnen worden opgeslagen in een <em>ArrayList-object</em> dat het concept van een „lijst met objecten“ implementeert. Deze klasse slaat objecten van het type <em>Object</em> op. Vanaf JDK 1.5 bestaan er lijsten met getypeerde objecten. Zo gebruiken we een object van het type <em>ArrayList&lt;ListeElectorale&gt;</em> om de lijsten op te slaan voordat ze naar een array worden overgebracht. Als deze array <em>tListes</em> heet, wordt de sortering ervan verkregen met de instructie:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content">// sorteren van lijsten</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">Arrays.</span><span style="font-style:italic;color:#000000">sort</span><span style="color:#000000">(tListes, </span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> CompareListesElectorales());</span></span></span>
+</code></pre></div>
+
+<p>waarbij <em>CompareListesElectorales</em> de klasse is die de interface <em>Comparator&lt;ListeElectorale&gt;</em> implementeert.</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Opdracht</strong>: herschrijf de applicatie [Elections] rekening houdend met deze nieuwe specificaties.</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<p>Het Eclipse-project zou er als volgt uit kunnen zien:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000002840000023FCAF6ECB5.png" width="225" height="201" style="display:inline-block; margin:4px;width:5.96cm;height:5.33cm;" class="odt-zoomable" data-zoom-src="images/10000000000002840000023FCAF6ECB5.png" /></td></tr></table>
+
+<p>Een voorbeeld van de uitvoering van [1] is als volgt:</p>
+<p><img src="images/100000000000011F000001C0A7BC39DD.png" width="201" height="314" style="width:5.309cm;height:8.301cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011F000001C0A7BC39DD.png" /></p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Deze cursus-tutorial, geschreven door <strong>Serge Tahé</strong>, wordt aan het publiek ter beschikking gesteld volgens de voorwaarden van de
+        <em>Creative Commons Naamsvermelding – Geen commercieel gebruik –
+        Gelijk delen 3.0 ongewijzigd</em>.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
